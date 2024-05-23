@@ -47,8 +47,8 @@ public class CartController extends HttpServlet {
             ProductCart productCart = (ProductCart) session.getAttribute(id);
             if (productCart == null) {
                 productCart = new ProductCart();
-                int bookId = Integer.parseInt(id);
-                Vector<Product> vec = productDao.getBySql("select * from book where BookID = '" + bookId + "'");
+                int productId = Integer.parseInt(id);
+                Vector<Product> vec = productDao.getBySql("select * from product where productID = '" + productId + "'");
                 Product product = vec.get(0);
                 productCart.setProductId(product.getProductId());
                 productCart.setName(product.getName());
