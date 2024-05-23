@@ -44,22 +44,25 @@ public class CartController extends HttpServlet {
         }
         if (service.equals("addToCart")) {
             String id = (String) request.getParameter("id");
-            ProductCart bookCart = (ProductCart) session.getAttribute(id);
-            if (bookCart == null) {
-                bookCart = new ProductCart();
+            ProductCart productCart = (ProductCart) session.getAttribute(id);
+            if (productCart == null) {
+                productCart = new ProductCart();
                 int bookId = Integer.parseInt(id);
                 Vector<Product> vec = productDao.getBySql("select * from book where BookID = '" + bookId + "'");
                 Product product = vec.get(0);
-                bookCart.setBookId(product.getBookId());
-                bookCart.setTitle(product.getTitle());
-                bookCart.setPrice(product.getPrice());
-                bookCart.setQuantity(1);
-                session.setAttribute(id, bookCart);
+                productCart.setProductId(product.getProductId());
+                productCart.setName(product.getName());
+                productCart.setPrice(product.getPrice());
+                productCart.setQuantity(1);
+                session.setAttribute(id, productCart);
             } else {
-                bookCart.setQuantity(bookCart.getQuantity() + 1);
-                session.setAttribute(id, bookCart);
+                productCart.setQuantity(productCart.getQuantity() + 1);
+                session.setAttribute(id, productCart);
             }
             response.sendRedirect("home");
+        }
+        if (service.equals("showCart")) {
+            request.getRequestDispatcher("/cart.jsp").forward(request, response);
         }
     }
 

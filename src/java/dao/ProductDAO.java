@@ -74,4 +74,12 @@ public class ProductDAO extends DBContext {
         }
         return vector;
     }
+
+    public static void main(String[] args) {
+        ProductDAO dao = new ProductDAO();
+        Vector<Product> list = dao.getAll();
+        for (Product product : list) {
+            System.out.println(product);
+        }
+    }
 }
