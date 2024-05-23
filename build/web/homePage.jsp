@@ -7,7 +7,7 @@
         <meta name="author" content="Enterprise Development">
         <link rel="shortcut icon" href="assets/custom/images/shortcut.png">
 
-        <title> Home 2 </title>
+        <title> Home </title>
 
         <!-- animate.css-->  
         <link href="assets/vendor/animate.css-master/animate.min.css" rel="stylesheet">
@@ -41,7 +41,8 @@
 
 
     <body>
-        <!-- Start Top Header -->
+
+    <!-- Start Top Header -->
         <div class="search-section">
             <a class="close-search" href="#"></a>
             <div class="d-flex justify-content-center align-items-center h-100">
@@ -84,13 +85,13 @@
                                             About
                                         </a>
                                     </li>
-
+                                    
                                     <li class="nav-item">
                                         <a class="nav-link" href="store_grid_list.html" id="sub-nav4" aria-haspopup="true" aria-expanded="false">
                                             Store
                                         </a>                                      
                                     </li>
-
+                                    
                                     <li class="nav-item">
                                         <a class="nav-link" href="contactus1.html" id="sub-nav7" aria-haspopup="true" aria-expanded="false">
                                             Contact Us
@@ -145,18 +146,19 @@
                             <a href="#" class="open-search fables-third-text-color right  top-header-link px-3 px-md-2 px-lg-4 fables-second-hover-color border-0 max-line-height">
                                 <span class="fables-iconsearch-icon"></span>
                             </a>
-                            <a href="signin.html" class="fables-third-text-color fables-second-hover-color font-13 top-header-link px-3 px-md-2 px-lg-4 max-line-height"><span class="fables-iconuser"></span></a>
-
-
+                            <a href="signIn.jsp" class="fables-third-text-color fables-second-hover-color font-13 top-header-link px-3 px-md-2 px-lg-4 max-line-height"><span class="fables-iconuser"></span></a>
 
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
-        <!-- /End Fables Navigation --> 
-        <!-- /End Top Header -->
-
+        </div>     
+<div class="fables-header fables-after-overlay">
+    <div class="container"> 
+         <h2 class="fables-page-title fables-second-border-color">Home</h2>
+    </div>
+</div>  
+<!-- /End Header -->
         <div class="container"> 
             <h2 class="font-35 font-weight-bold text-center fables-main-text-color my-3 my-lg-5">Team</h2>          
             <div class="row overflow-hidden">
@@ -241,26 +243,16 @@
         </div> 
         <!-- /End page content -->
 
-        <!-- Start Footer  -->
+<!-- Start Footer  -->
         <div class="fables-footer-image fables-after-overlay white-color py-4 py-lg-5 bg-rules">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-2 mb-5 text-center">
-                        <h2 class="font-30 semi-font mb-5">Newsletter</h2>
-                        <form class="form-inline position-relative"> 
-                            <div class="form-group fables-subscribe-formgroup"> 
-                                <input type="email" class="form-control fables-subscribe-input fables-btn-rouned" placeholder="Your Email">
-                            </div>
-                            <button type="submit" class="btn fables-second-background-color fables-btn-rouned fables-subscribe-btn">Subscribe</button>
-                        </form>
-
-                    </div>
                     <div class="col-12 col-lg-4 mb-4 mb-lg-0">
                         <a href="#" class="fables-second-border-color border-bottom pb-3 d-block mb-3 mt-minus-13"><img src="assets/custom/images/fables-logo.png" alt="fables template"></a>
                         <p class="font-15 fables-third-text-color">
-                            t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters. 
+                            Our shoe shop is committed to bringing you high quality products and top reputable services.                             
                             <br><br>
-                            t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                            We always put customer satisfaction first with warranty and dedicated support.
                         </p> 
 
                     </div>
@@ -269,26 +261,23 @@
                         <h2 class="font-20 semi-font fables-second-border-color border-bottom pb-3">Contact us</h2>
                         <div class="my-3">
                             <h4 class="font-16 semi-font"><span class="fables-iconmap-icon fables-second-text-color pr-2 font-20 mt-1 d-inline-block"></span> Address Information</h4>
-                            <p class="font-14 fables-fifth-text-color mt-2 ml-4">level13, 2Elizabeth St, Melbourne, Victor 2000</p>
+                            <p class="font-14 fables-fifth-text-color mt-2 ml-4"> BE113, FPT University, Ha Noi</p>
                         </div>
                         <div class="my-3">
                             <h4 class="font-16 semi-font"><span class="fables-iconphone fables-second-text-color pr-2 font-20 mt-1 d-inline-block"></span> Call Now </h4>
-                            <p class="font-14 fables-fifth-text-color mt-2 ml-4">+333 111 111 000</p>
+                            <p class="font-14 fables-fifth-text-color mt-2 ml-4">+84 65 083 603</p>
                         </div>
                         <div class="my-3">
                             <h4 class="font-16 semi-font"><span class="fables-iconemail fables-second-text-color pr-2 font-20 mt-1 d-inline-block"></span> Mail </h4>
-                            <p class="font-14 fables-fifth-text-color mt-2 ml-4">adminsupport@website.com</p>
+                            <p class="font-14 fables-fifth-text-color mt-2 ml-4">HieuBVHE172009@fpt.edu.vn</p>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-4">
                         <h2 class="font-20 semi-font fables-second-border-color border-bottom pb-3 mb-3">EXPLORE OUR SITE</h2>
                         <ul class="nav fables-footer-links">
-                            <li><a href="about1.html">About Us</a></li>
-                            <li><a href="contactus1.html">Contact Us</a></li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="team.html">Team</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="testimonials.html">Testimonials</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li> 
+                            <li><a href="news.html">News</a></li> 
                         </ul>
                     </div>
 

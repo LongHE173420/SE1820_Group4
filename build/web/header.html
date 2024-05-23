@@ -39,7 +39,15 @@
         <link href="assets/custom/css/custom-responsive.css" rel="stylesheet">
     </head>
     <body>
-        <!-- Start Top Header -->
+<!-- Loading Screen -->
+<div id="ju-loading-screen">
+  <div class="sk-double-bounce">
+    <div class="sk-child sk-double-bounce1"></div>
+    <div class="sk-child sk-double-bounce2"></div>
+  </div>
+</div>
+
+    <!-- Start Top Header -->
         <div class="search-section">
             <a class="close-search" href="#"></a>
             <div class="d-flex justify-content-center align-items-center h-100">
@@ -76,26 +84,21 @@
                                         </a>
                                     </li>
 
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="about1.html" id="sub-nav3"  aria-haspopup="true" aria-expanded="false">
+                                            About
+                                        </a>
+                                    </li>
+                                    
                                     <li class="nav-item">
                                         <a class="nav-link" href="store_grid_list.html" id="sub-nav4" aria-haspopup="true" aria-expanded="false">
                                             Store
                                         </a>                                      
                                     </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="news.html" id="sub-nav3"  aria-haspopup="true" aria-expanded="false">
-                                            News
-                                        </a>
-                                    </li>
                                     
                                     <li class="nav-item">
-                                        <a class="nav-link" href="about.html" id="sub-nav3"  aria-haspopup="true" aria-expanded="false">
-                                            About
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="contactus.html" id="sub-nav7" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link" href="contactus1.html" id="sub-nav7" aria-haspopup="true" aria-expanded="false">
                                             Contact Us
                                         </a>
                                     </li>  
@@ -150,15 +153,17 @@
                             </a>
                             <a href="signin.html" class="fables-third-text-color fables-second-hover-color font-13 top-header-link px-3 px-md-2 px-lg-4 max-line-height"><span class="fables-iconuser"></span></a>
 
-
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
-
-        <!-- /End Top Header -->      
+        </div>     
+<div class="fables-header fables-after-overlay">
+    <div class="container"> 
+         <h2 class="fables-page-title fables-second-border-color">Register</h2>
+    </div>
+</div>  
+<!-- /End Header -->     
         <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
         <script src="assets/vendor/timeline/jquery.timelify.js"></script>
         <script src="assets/vendor/loadscreen/js/ju-loading-screen.js"></script>
@@ -172,8 +177,6 @@
         <script src="assets/vendor/WOW-master/dist/wow.min.js"></script>
         <script src="assets/custom/js/custom.js"></script>  
         <script>
-            $(".player").mb_YTPlayer();
-
         </script>
     </body>
 </html>
