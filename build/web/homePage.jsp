@@ -66,7 +66,7 @@
                     <div class="col-12 col-md-10 col-lg-9 pr-md-0">                       
                         <nav class="navbar navbar-expand-md btco-hover-menu py-lg-2">
 
-                            <a class="navbar-brand pl-0" href="home"><img src="assets/custom/images/fables-logo.png" alt="Fables Template" class="fables-logo"></a>
+                            <a class="navbar-brand pl-0" href="home"><img src="assets/custom/images/Logo-header1.jpg" alt="Fables Template" class="fables-logo"></a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#fablesNavDropdown" aria-controls="fablesNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="fables-iconmenu-icon text-white font-16"></span>
                             </button>
@@ -159,54 +159,57 @@
     </div>
 </div>  
 <!-- /End Header -->
-        <div class="container"> 
-            <h2 class="font-35 font-weight-bold text-center fables-main-text-color my-3 my-lg-5">Team</h2>          
-            <div class="row overflow-hidden">
-                <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay=".4s" data-wow-duration="1.5s">
-                    <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
-                        <div class="image-container shine-effect">
-                            <a href="#"><img class="w-100" src="assets/custom/images/team3-1.jpg" alt="Card image cap"></a> 
-                        </div>
-                        <div class="card-body">
-                            <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                            <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
-                        </div>
-                    </div>
+       <div class="container"> 
+    <h2 class="font-35 font-weight-bold text-center fables-main-text-color my-3 my-lg-5">Team</h2>          
+    <div class="row overflow-hidden">
+        <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay=".4s" data-wow-duration="1.5s">
+            <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
+                <div class="image-container shine-effect" style="height: 250px; overflow: hidden;">
+                    <a href="#"><img class="w-100 h-100" style="object-fit: cover;" src="assets/custom/images/anh1.jpg" alt="Card image cap"></a> 
                 </div>
-                <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay=".8s" data-wow-duration="1.5s">
-                    <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
-                        <div class="image-container shine-effect">
-                            <a href="#"><img class="w-100" src="assets/custom/images/team3-2.jpg" alt="Card image cap"></a>
-                        </div>
-                        <div class="card-body">
-                            <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                            <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
-                        </div>
-                    </div>
+                <div class="card-body">
+                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">Hoang Minh Duc</a></h5>
+                    <p class="font-13 fables-forth-text-color my-1">Member</p> 
                 </div>
-                <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.2s" data-wow-duration="1.5s">
-                    <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
-                        <div class="image-container shine-effect">
-                            <a href="#"><img class="w-100" src="assets/custom/images/team3-1.jpg" alt="Card image cap"></a>
-                        </div>
-                        <div class="card-body">
-                            <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                            <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay=".8s" data-wow-duration="1.5s">
+            <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
+                <div class="image-container shine-effect" style="height: 250px; overflow: hidden;">
+                    <a href="#"><img class="w-100 h-100" style="object-fit: cover;" src="assets/custom/images/anh 2.jpg" alt="Card image cap"></a>
                 </div>
-                <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.6s" data-wow-duration="1.5s">
-                    <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
-                        <div class="image-container shine-effect">
-                            <a href="#"><img class="w-100" src="assets/custom/images/team3-2.jpg" alt="Card image cap"></a>
-                        </div>
-                        <div class="card-body">
-                            <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                            <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
-                        </div>
-                    </div>
+                <div class="card-body">
+                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">Nguyen Duy Dung</a></h5>
+                    <p class="font-13 fables-forth-text-color my-1">Member</p> 
                 </div>
-            </div>  
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.2s" data-wow-duration="1.5s">
+            <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
+                <div class="image-container shine-effect" style="height: 250px; overflow: hidden;">
+                    <a href="#"><img class="w-100 h-100" style="object-fit: cover;" src="assets/custom/images/anh 3.jpg" alt="Card image cap"></a>
+                </div>
+                <div class="card-body">
+                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">Hoang Manh Long</a></h5>
+                    <p class="font-13 fables-forth-text-color my-1">Member</p> 
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.6s" data-wow-duration="1.5s">
+            <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
+                <div class="image-container shine-effect" style="height: 250px; overflow: hidden;">
+                    <a href="#"><img class="w-100 h-100" style="object-fit: cover;" src="assets/custom/images/team3-2.jpg" alt="Card image cap"></a>
+                </div>
+                <div class="card-body">
+                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
+                    <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+ 
             <div class="row my-3 my-lg-5">
 
                 <div class="owl-carousel owl-theme px-6 my-0" id="fables-partner-carousel">
