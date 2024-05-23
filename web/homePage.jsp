@@ -37,11 +37,11 @@
         <link href="assets/custom/css/custom.css" rel="stylesheet">
         <!-- FABLES CUSTOM CSS RESPONSIVE FILE -->
         <link href="assets/custom/css/custom-responsive.css" rel="stylesheet">
-
     </head>
 
 
     <body>
+        <!-- Start Top Header -->
         <div class="search-section">
             <a class="close-search" href="#"></a>
             <div class="d-flex justify-content-center align-items-center h-100">
@@ -57,11 +57,6 @@
                 </form>
             </div>
         </div>
-
-        <!-- Start Top Header -->
-
-
-        <!-- /End Top Header -->
 
         <!-- Start Fables Navigation -->
         <div class="fables-navigation fables-main-background-color py-3 py-lg-0">
@@ -89,13 +84,13 @@
                                             About
                                         </a>
                                     </li>
-                                    
+
                                     <li class="nav-item">
                                         <a class="nav-link" href="store_grid_list.html" id="sub-nav4" aria-haspopup="true" aria-expanded="false">
                                             Store
                                         </a>                                      
                                     </li>
-                                    
+
                                     <li class="nav-item">
                                         <a class="nav-link" href="contactus1.html" id="sub-nav7" aria-haspopup="true" aria-expanded="false">
                                             Contact Us
@@ -160,93 +155,93 @@
             </div>
         </div> 
         <!-- /End Fables Navigation --> 
+        <!-- /End Top Header -->
 
-  
-            <div class="container"> 
-         <h2 class="font-35 font-weight-bold text-center fables-main-text-color my-3 my-lg-5">Team</h2>          
-         <div class="row overflow-hidden">
-            <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay=".4s" data-wow-duration="1.5s">
-                <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
-                  <div class="image-container shine-effect">
-                      <a href="#"><img class="w-100" src="assets/custom/images/team3-1.jpg" alt="Card image cap"></a> 
-                  </div>
-                  <div class="card-body">
-                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                    <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
-                  </div>
+        <div class="container"> 
+            <h2 class="font-35 font-weight-bold text-center fables-main-text-color my-3 my-lg-5">Team</h2>          
+            <div class="row overflow-hidden">
+                <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay=".4s" data-wow-duration="1.5s">
+                    <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
+                        <div class="image-container shine-effect">
+                            <a href="#"><img class="w-100" src="assets/custom/images/team3-1.jpg" alt="Card image cap"></a> 
+                        </div>
+                        <div class="card-body">
+                            <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
+                            <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay=".8s" data-wow-duration="1.5s">
-                <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
-                   <div class="image-container shine-effect">
-                      <a href="#"><img class="w-100" src="assets/custom/images/team3-2.jpg" alt="Card image cap"></a>
-                  </div>
-                  <div class="card-body">
-                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                    <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
-                  </div>
+                <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay=".8s" data-wow-duration="1.5s">
+                    <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
+                        <div class="image-container shine-effect">
+                            <a href="#"><img class="w-100" src="assets/custom/images/team3-2.jpg" alt="Card image cap"></a>
+                        </div>
+                        <div class="card-body">
+                            <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
+                            <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.2s" data-wow-duration="1.5s">
-                <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
-                   <div class="image-container shine-effect">
-                      <a href="#"><img class="w-100" src="assets/custom/images/team3-1.jpg" alt="Card image cap"></a>
-                  </div>
-                  <div class="card-body">
-                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                    <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
-                  </div>
+                <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.2s" data-wow-duration="1.5s">
+                    <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
+                        <div class="image-container shine-effect">
+                            <a href="#"><img class="w-100" src="assets/custom/images/team3-1.jpg" alt="Card image cap"></a>
+                        </div>
+                        <div class="card-body">
+                            <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
+                            <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.6s" data-wow-duration="1.5s">
-                <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
-                   <div class="image-container shine-effect">
-                       <a href="#"><img class="w-100" src="assets/custom/images/team3-2.jpg" alt="Card image cap"></a>
-                  </div>
-                  <div class="card-body">
-                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                    <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
-                  </div>
+                <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.6s" data-wow-duration="1.5s">
+                    <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
+                        <div class="image-container shine-effect">
+                            <a href="#"><img class="w-100" src="assets/custom/images/team3-2.jpg" alt="Card image cap"></a>
+                        </div>
+                        <div class="card-body">
+                            <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
+                            <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>  
-        <div class="row my-3 my-lg-5">
-            
-          <div class="owl-carousel owl-theme px-6 my-0" id="fables-partner-carousel">
-                  <div> 
-                      <img src="assets/custom/images/partner2-1.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
-                  <div> 
-                      <img src="assets/custom/images/partner2-2.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
-                  <div> 
-                      <img src="assets/custom/images/partner2-3.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
-                  <div> 
-                      <img src="assets/custom/images/partner2-4.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
-                  <div> 
-                      <img src="assets/custom/images/partner2-3.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
-                  <div> 
-                      <img src="assets/custom/images/partner2-1.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
-                  <div> 
-                      <img src="assets/custom/images/partner2-2.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
-                  <div> 
-                      <img src="assets/custom/images/partner2-3.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
-                  <div> 
-                      <img src="assets/custom/images/partner2-4.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
-                  </div>
+            </div>  
+            <div class="row my-3 my-lg-5">
 
-            </div>
-        </div>   
-       </div> 
+                <div class="owl-carousel owl-theme px-6 my-0" id="fables-partner-carousel">
+                    <div> 
+                        <img src="assets/custom/images/partner2-1.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+                    <div> 
+                        <img src="assets/custom/images/partner2-2.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+                    <div> 
+                        <img src="assets/custom/images/partner2-3.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+                    <div> 
+                        <img src="assets/custom/images/partner2-4.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+                    <div> 
+                        <img src="assets/custom/images/partner2-3.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+                    <div> 
+                        <img src="assets/custom/images/partner2-1.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+                    <div> 
+                        <img src="assets/custom/images/partner2-2.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+                    <div> 
+                        <img src="assets/custom/images/partner2-3.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+                    <div> 
+                        <img src="assets/custom/images/partner2-4.jpg" alt="Fables Template" class="fables-partner-carousel-img">  
+                    </div>
+
+                </div>
+            </div>   
+        </div> 
         <!-- /End page content -->
 
-        <!-- Start Footer 2 Background Image  -->
+        <!-- Start Footer  -->
         <div class="fables-footer-image fables-after-overlay white-color py-4 py-lg-5 bg-rules">
             <div class="container">
                 <div class="row">
@@ -307,8 +302,7 @@
                 <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>               
             </ul>
         </div>
-
-        <!-- /End Footer 2 Background Image -->
+        <!-- /End Footer -->
         <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
         <script src="assets/vendor/timeline/jquery.timelify.js"></script>
         <script src="assets/vendor/loadscreen/js/ju-loading-screen.js"></script>
@@ -322,9 +316,6 @@
         <script src="assets/vendor/WOW-master/dist/wow.min.js"></script>
         <script src="assets/custom/js/custom.js"></script>  
         <script>
-            $(".player").mb_YTPlayer();
-
         </script>
-
     </body>
 </html>
