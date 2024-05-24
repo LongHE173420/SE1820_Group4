@@ -7,7 +7,7 @@
         <meta name="author" content="Enterprise Development">
         <link rel="shortcut icon" href="assets/custom/images/shortcut.png">
 
-        <title> Home </title>
+        <title>  </title>
 
         <!-- animate.css-->  
         <link href="assets/vendor/animate.css-master/animate.min.css" rel="stylesheet">
@@ -198,11 +198,11 @@
         <div class="col-6 col-md-3 mb-4 wow bounceInDown" data-wow-delay="1.6s" data-wow-duration="1.5s">
             <div class="card fables-team-block fables-second-hover-text-color fables-team-border fables-second-border-color">
                 <div class="image-container shine-effect" style="height: 250px; overflow: hidden;">
-                    <a href="#"><img class="w-100 h-100" style="object-fit: cover;" src="assets/custom/images/team3-2.jpg" alt="Card image cap"></a>
+                    <a href="#"><img class="w-100 h-100" style="object-fit: cover;" src="assets/custom/images/anh 4.jpg" alt="Card image cap"></a>
                 </div>
                 <div class="card-body">
-                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">JOHN MARTIN</a></h5>
-                    <p class="font-13 fables-forth-text-color my-1">Programmer</p> 
+                    <h5><a href="#" class="font-20 semi-font fables-forth-text-color fables-second-hover-color team-name">Nguyen Van Quyen</a></h5>
+                    <p class="font-13 fables-forth-text-color my-1">Member</p> 
                 </div>
             </div>
         </div>
