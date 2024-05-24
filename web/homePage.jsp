@@ -7,7 +7,7 @@
         <meta name="author" content="Enterprise Development">
         <link rel="shortcut icon" href="assets/custom/images/shortcut.png">
 
-        <title>  </title>
+        <title> Home </title>
 
         <!-- animate.css-->  
         <link href="assets/vendor/animate.css-master/animate.min.css" rel="stylesheet">
