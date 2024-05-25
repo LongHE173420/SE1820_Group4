@@ -81,10 +81,9 @@
 
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="about1.html" id="sub-nav3"  aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link" href="about.html" id="sub-nav3"  aria-haspopup="true" aria-expanded="false">
                                             About
                                         </a>
-                                    </li>
                                     
                                     <li class="nav-item">
                                         <a class="nav-link" href="store_grid_list.html" id="sub-nav4" aria-haspopup="true" aria-expanded="false">
