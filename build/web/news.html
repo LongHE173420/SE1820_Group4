@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Section</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .news-card {
+            margin-bottom: 30px;
+        }
+        .news-card img {
+            width: 100%;
+            height: auto;
+        }
+        .news-card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .news-card-date {
+            font-size: 0.875rem;
+            color: gray;
+        }
+        .news-card-description {
+            font-size: 1rem;
+        }
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .news-item {
+            flex: 1 1 calc(33% - 30px);
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">News</h1>
+        <div class="row" id="news-container" class="news-container">
+            <!-- News articles will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/your_project_name/news')
+                .then(response => response.json())
+                .then(data => {
+                    const newsContainer = document.getElementById('news-container');
+                    data.forEach(news => {
+                        const newsCard = document.createElement('div');
+                        newsCard.classList.add('col-md-4', 'news-card', 'news-item');
+                        newsCard.innerHTML = `
+                            <div class="card">
+                                <img src="${news.imageUrl}" class="card-img-top" alt="${news.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title news-card-title">${news.title}</h5>
+                                    <p class="news-card-date">Người viết: ${news.author} / ${new Date(news.date).toLocaleDateString()}</p>
+                                    <p class="card-text news-card-description">${news.description}</p>
+                                </div>
+                            </div>
+                        `;
+                        newsContainer.appendChild(newsCard);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
