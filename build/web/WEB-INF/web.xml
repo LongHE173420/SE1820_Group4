@@ -5,15 +5,15 @@
         <servlet-class>controller.HomeControll</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>getNews</servlet-name>
-        <servlet-class>severlet.NewsServlet</servlet-class>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>servlet.NewServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomePage</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>getNews</servlet-name>
+        <servlet-name>NewServlet</servlet-name>
         <url-pattern>/news</url-pattern>
     </servlet-mapping>
 </web-app>

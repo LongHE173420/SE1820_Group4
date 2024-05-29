@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entity;
+package Model;
 
 /**
  *
@@ -14,7 +14,7 @@ public class News {
     private int accountID;
     private String title;
     private String description;
-    private String imageUrl;
+    private String img;
     private String author;
     private String date;
 
@@ -23,12 +23,12 @@ public class News {
     public News() {
     }
 
-    public News(int newsID, int accountID, String title, String description, String imageUrl, String author, String date) {
+    public News(int newsID, int accountID, String title, String description, String img, String author, String date) {
         this.newsID = newsID;
         this.accountID = accountID;
         this.title = title;
         this.description = description;
-        this.imageUrl = imageUrl;
+        this.img = img;
         this.author = author;
         this.date = date;
     }
@@ -65,12 +65,12 @@ public class News {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImg() {
+        return img;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getAuthor() {
@@ -88,5 +88,7 @@ public class News {
     public void setDate(String date) {
         this.date = date;
     }
+
+    
 
 }
