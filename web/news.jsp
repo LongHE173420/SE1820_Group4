@@ -44,21 +44,23 @@
 
     <!-- Form để Thêm hoặc Cập nhật Tin tức -->
     <form action="news" method="post">
-        <input type="hidden" name="action" value="addOrUpdate">
-        <input type="hidden" name="newsID" value="${news.newsID}">
+        <input type="hidden" name="action" value="${empty news ? 'add' : 'update'}">
+        <c:if test="${!empty news}">
+            <input type="hidden" name="newsID" value="${news.newsID}">
+        </c:if>
         <label>ID Tài khoản:</label>
-        <input type="text" name="accountID" value="${news.accountID}"><br>
+        <input type="text" name="accountID" value="${empty news ? '' : news.accountID}"><br>
         <label>Tiêu đề:</label>
-        <input type="text" name="title" value="${news.title}"><br>
+        <input type="text" name="title" value="${empty news ? '' : news.title}"><br>
         <label>Mô tả:</label>
-        <input type="text" name="description" value="${news.description}"><br>
+        <input type="text" name="description" value="${empty news ? '' : news.description}"><br>
         <label>Hình ảnh (URL):</label>
-        <input type="text" name="img" value="${news.img}"><br>
+        <input type="text" name="img" value="${empty news ? '' : news.img}"><br>
         <label>Tác giả:</label>
-        <input type="text" name="author" value="${news.author}"><br>
+        <input type="text" name="author" value="${empty news ? '' : news.author}"><br>
         <label>Ngày:</label>
-        <input type="date" name="date" value="${news.date}"><br>
-        <input type="submit" value="Gửi">
+        <input type="date" name="date" value="${empty news ? '' : news.date}"><br>
+        <input type="submit" value="${empty news ? 'Thêm' : 'Cập nhật'}">
     </form>
     <br>
 
