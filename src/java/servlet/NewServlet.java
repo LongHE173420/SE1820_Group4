@@ -1,36 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlet;
 
 import Model.News;
 import dal.NewsManager;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.nio.file.Files;
 
-import java.util.List;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-/**
- *
- * @author Dell
- */
+@MultipartConfig
 public class NewServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    private static final Logger LOGGER = Logger.getLogger(NewServlet.class.getName());
     private NewsManager newsManager;
 
     @Override
@@ -56,8 +51,9 @@ public class NewServlet extends HttpServlet {
             case "view":
                 showNewsDetail(request, response);
                 break;
-               
-              
+            case "add":
+                showAddNews(request, response);
+                break;
             default:
                 listNews(request, response);
                 break;
@@ -107,67 +103,80 @@ public class NewServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+     private void showAddNews(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("addNews.jsp");
+        dispatcher.forward(request, response);
+    }
+    
     private void addNews(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
-        
-        String author = request.getParameter("author");
-        String dateString = request.getParameter("date");
+        try {
+            int accountID = Integer.parseInt(request.getParameter("accountID"));
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
+            String author = request.getParameter("author");
+            String dateString = request.getParameter("date");
 
-        Date date = Date.valueOf(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        
-        Part filePart = request.getPart("img");
-         String fileName = getFileName(filePart);
-        String filePath = getServletContext().getRealPath("/") + "images" + File.separator + fileName;
+            Date date = Date.valueOf(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
-        File uploads = new File(getServletContext().getRealPath("/") + "images");
-        if (!uploads.exists()) {
-            uploads.mkdirs();
+            Part filePart = request.getPart("img");
+            String fileName = getFileName(filePart);
+            String filePath = getServletContext().getRealPath("/") + "images" + File.separator + fileName;
+
+            File uploads = new File(getServletContext().getRealPath("/") + "images");
+            if (!uploads.exists()) {
+                uploads.mkdirs();
+            }
+
+            try (InputStream input = filePart.getInputStream()) {
+                Files.copy(input, new File(filePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }
+            
+            newsManager.addNews(accountID, title, description, "images/" + fileName, author, date);
+            response.sendRedirect(request.getContextPath() + "/news");
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error adding news", e);
+            response.sendRedirect(request.getContextPath() + "addNews.jsp");
         }
-
-        try (InputStream input = filePart.getInputStream()) {
-            File file = new File(filePath);
-            Files.copy(input, file.toPath());
-        }
-
-        newsManager.addNews(accountID, title, description, "images/" + fileName, author, date);
-        response.sendRedirect(request.getContextPath() + "/news");
     }
 
     private void updateNews(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int newsID = Integer.parseInt(request.getParameter("newsID"));
-        int accountID = Integer.parseInt(request.getParameter("accountID"));
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
-        
-        String author = request.getParameter("author");
-        String dateString = request.getParameter("date");
+        try {
+            int newsID = Integer.parseInt(request.getParameter("newsID"));
+            int accountID = Integer.parseInt(request.getParameter("accountID"));
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
+            String author = request.getParameter("author");
+            String dateString = request.getParameter("date");
 
-        Date date = Date.valueOf(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            Date date = Date.valueOf(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
-        Part filePart = request.getPart("img");
-        String fileName = getFileName(filePart);
-        String filePath = getServletContext().getRealPath("/") + "images" + File.separator + fileName;
-        if (filePart != null && filePart.getSize() > 0) {
-            try (InputStream input = filePart.getInputStream()) {
-                File file = new File(filePath);
-                Files.copy(input, file.toPath());
+            Part filePart = request.getPart("img");
+            String fileName = getFileName(filePart);
+            String filePath = getServletContext().getRealPath("/") + "images" + File.separator + fileName;
+            if (filePart != null && filePart.getSize() > 0) {
+                try (InputStream input = filePart.getInputStream()) {
+                    Files.copy(input, new File(filePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
             }
+
+            newsManager.updateNews(newsID, accountID, title, description, "images/" + fileName, author, date);
+            response.sendRedirect(request.getContextPath() + "/news");
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error updating news", e);
+            response.sendRedirect(request.getContextPath() + "/news");
         }
-        News news = new News(newsID, accountID, title, description, "images/" + fileName, author, date);
-        newsManager.updateNews(newsID, accountID, title, description, "images/" + fileName, author, date);
-        response.sendRedirect(request.getContextPath() + "news");
     }
 
     private void deleteNews(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int newsID = Integer.parseInt(request.getParameter("newsID"));
         newsManager.deleteNews(newsID);
-       response.sendRedirect(request.getContextPath() + "/news");
+        response.sendRedirect(request.getContextPath() + "/news");
     }
+
     private String getFileName(Part part) {
         for (String cd : part.getHeader("content-disposition").split(";")) {
             if (cd.trim().startsWith("filename")) {

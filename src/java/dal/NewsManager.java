@@ -4,6 +4,7 @@
  */
 package dal;
 
+import Model.Account;
 import Model.News;
 import java.sql.*;
 import java.util.ArrayList;
@@ -98,5 +99,30 @@ public class NewsManager extends DBContext {
         }
         return news;
     }
+    
+//    public Account getAccountById(int id) {
+//        Account result = null;
+//        String sql = """
+//                     SELECT [AccountID]
+//                           ,[Phone]
+//                           ,[Email]
+//                           ,[Password]
+//                           ,[RoleID]
+//                           ,[Address]
+//                           ,[Status]
+//                       FROM [dbo].[Account]
+//                       where [AccountID] = ?""";
+//        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+//            pst.setInt(1, id);
+//            try (ResultSet rs = pst.executeQuery()) {
+//                if (rs.next()) {
+//                    return new Account(rs.getInt(1), rs.getString(2), );
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return result;
+//    }
 }
 
