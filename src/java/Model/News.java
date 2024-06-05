@@ -4,26 +4,29 @@
  */
 package Model;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.sql.*;
+
 /**
  *
  * @author Dell
  */
 public class News {
-   
+
     private int newsID;
     private int accountID;
     private String title;
     private String description;
     private String img;
     private String author;
-    private String date;
+    private Date date;
 
     // Getters and Setters
-
     public News() {
     }
 
-    public News(int newsID, int accountID, String title, String description, String img, String author, String date) {
+    public News(int newsID, int accountID, String title, String description, String img, String author, Date date) {
         this.newsID = newsID;
         this.accountID = accountID;
         this.title = title;
@@ -81,11 +84,11 @@ public class News {
         this.author = author;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

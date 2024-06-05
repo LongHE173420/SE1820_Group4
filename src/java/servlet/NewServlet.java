@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package servlet;
 
 import Model.News;
@@ -14,14 +13,23 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.nio.file.Files;
+
 import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author Dell
  */
 public class NewServlet extends HttpServlet {
-   
+
     private static final long serialVersionUID = 1L;
     private NewsManager newsManager;
 
@@ -48,6 +56,8 @@ public class NewServlet extends HttpServlet {
             case "view":
                 showNewsDetail(request, response);
                 break;
+               
+              
             default:
                 listNews(request, response);
                 break;
@@ -75,7 +85,7 @@ public class NewServlet extends HttpServlet {
             throws ServletException, IOException {
         List<News> newsList = newsManager.getAllNews();
         request.setAttribute("newsList", newsList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/manageNews.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("manageNews.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -83,7 +93,7 @@ public class NewServlet extends HttpServlet {
             throws ServletException, IOException {
         int newsID = Integer.parseInt(request.getParameter("newsID"));
         News existingNews = newsManager.getNewsById(newsID);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/manageNews.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("editNews.jsp");
         request.setAttribute("news", existingNews);
         dispatcher.forward(request, response);
     }
@@ -93,7 +103,7 @@ public class NewServlet extends HttpServlet {
         int newsID = Integer.parseInt(request.getParameter("newsID"));
         News news = newsManager.getNewsById(newsID);
         request.setAttribute("news", news);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/viewNews.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("viewNews.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -102,11 +112,27 @@ public class NewServlet extends HttpServlet {
         int accountID = Integer.parseInt(request.getParameter("accountID"));
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-        String img = request.getParameter("img");
+        
         String author = request.getParameter("author");
-        String date = request.getParameter("date");
+        String dateString = request.getParameter("date");
 
-        newsManager.addNews(accountID, title, description, img, author, date);
+        Date date = Date.valueOf(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        
+        Part filePart = request.getPart("img");
+         String fileName = getFileName(filePart);
+        String filePath = getServletContext().getRealPath("/") + "images" + File.separator + fileName;
+
+        File uploads = new File(getServletContext().getRealPath("/") + "images");
+        if (!uploads.exists()) {
+            uploads.mkdirs();
+        }
+
+        try (InputStream input = filePart.getInputStream()) {
+            File file = new File(filePath);
+            Files.copy(input, file.toPath());
+        }
+
+        newsManager.addNews(accountID, title, description, "images/" + fileName, author, date);
         response.sendRedirect(request.getContextPath() + "/news");
     }
 
@@ -116,19 +142,39 @@ public class NewServlet extends HttpServlet {
         int accountID = Integer.parseInt(request.getParameter("accountID"));
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-        String img = request.getParameter("img");
+        
         String author = request.getParameter("author");
-        String date = request.getParameter("date");
+        String dateString = request.getParameter("date");
 
-        News news = new News(newsID, accountID, title, description, img, author, date);
-        newsManager.updateNews(newsID, accountID, title, description, img, author, date);
-        response.sendRedirect(request.getContextPath() + "/news");
+        Date date = Date.valueOf(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+        Part filePart = request.getPart("img");
+        String fileName = getFileName(filePart);
+        String filePath = getServletContext().getRealPath("/") + "images" + File.separator + fileName;
+        if (filePart != null && filePart.getSize() > 0) {
+            try (InputStream input = filePart.getInputStream()) {
+                File file = new File(filePath);
+                Files.copy(input, file.toPath());
+            }
+        }
+        News news = new News(newsID, accountID, title, description, "images/" + fileName, author, date);
+        newsManager.updateNews(newsID, accountID, title, description, "images/" + fileName, author, date);
+        response.sendRedirect(request.getContextPath() + "news");
     }
 
     private void deleteNews(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int newsID = Integer.parseInt(request.getParameter("newsID"));
         newsManager.deleteNews(newsID);
-        response.sendRedirect(request.getContextPath() + "/news");
+       response.sendRedirect(request.getContextPath() + "/news");
+    }
+    private String getFileName(Part part) {
+        for (String cd : part.getHeader("content-disposition").split(";")) {
+            if (cd.trim().startsWith("filename")) {
+                String fileName = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+                return fileName.substring(fileName.lastIndexOf('/') + 1).substring(fileName.lastIndexOf('\\') + 1); // MSIE fix.
+            }
+        }
+        return null;
     }
 }

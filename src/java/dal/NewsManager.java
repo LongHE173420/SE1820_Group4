@@ -11,7 +11,7 @@ import java.util.List;
 
 public class NewsManager extends DBContext {
 
-     public void addNews(int accountID, String title, String description, String img, String author, String date) {
+     public void addNews(int accountID, String title, String description, String img, String author, Date date) {
         String query = "INSERT INTO News (AccountID, Title, Description, Img, Author, Date) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setInt(1, accountID);
@@ -19,7 +19,7 @@ public class NewsManager extends DBContext {
             pst.setString(3, description);
             pst.setString(4, img);
             pst.setString(5, author);
-            pst.setString(6, date);
+            pst.setDate(6, new java.sql.Date(date.getTime()));
             pst.executeUpdate();
             System.out.println("News added successfully!");
         } catch (SQLException e) {
@@ -27,7 +27,7 @@ public class NewsManager extends DBContext {
         }
     }
 
-    public void updateNews(int newsID, int accountID, String title, String description, String img, String author, String date) {
+    public void updateNews(int newsID, int accountID, String title, String description, String img, String author, Date date) {
         String query = "UPDATE News SET AccountID = ?, Title = ?, Description = ?, Img = ?, Author = ?, Date = ? WHERE NewsID = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setInt(1, accountID);
@@ -35,7 +35,7 @@ public class NewsManager extends DBContext {
             pst.setString(3, description);
             pst.setString(4, img);
             pst.setString(5, author);
-            pst.setString(6, date);
+            pst.setDate(6, new java.sql.Date(date.getTime()));
             pst.setInt(7, newsID);
             pst.executeUpdate();
             System.out.println("News updated successfully!");
@@ -67,7 +67,7 @@ public class NewsManager extends DBContext {
                 news.setDescription(rs.getString("Description"));
                 news.setImg(rs.getString("Img"));
                 news.setAuthor(rs.getString("Author"));
-                news.setDate(rs.getString("Date"));
+                news.setDate(rs.getDate("Date"));
                 newsList.add(news);
             }
         } catch (SQLException e) {
@@ -90,7 +90,7 @@ public class NewsManager extends DBContext {
                     news.setDescription(rs.getString("Description"));
                     news.setImg(rs.getString("Img"));
                     news.setAuthor(rs.getString("Author"));
-                    news.setDate(rs.getString("Date"));
+                    news.setDate(rs.getDate("Date"));
                 }
             }
         } catch (SQLException e) {
