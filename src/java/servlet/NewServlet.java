@@ -43,7 +43,7 @@ public class NewServlet extends HttpServlet {
 
         switch (action) {
             case "edit":
-                showEditForm(request, response);
+                showEditNews(request, response);
                 break;
             case "delete":
                 deleteNews(request, response);
@@ -85,7 +85,7 @@ public class NewServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+    private void showEditNews(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int newsID = Integer.parseInt(request.getParameter("newsID"));
         News existingNews = newsManager.getNewsById(newsID);
