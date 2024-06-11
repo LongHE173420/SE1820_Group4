@@ -11,8 +11,8 @@ import java.util.logging.Logger;
  *
  * @author Admin
  */
-public abstract class DBContext {
-    protected Connection connection;
+public  class DBContext {
+    public Connection connection;
     public DBContext()
     {
         try {
