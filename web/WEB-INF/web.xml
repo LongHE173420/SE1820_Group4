@@ -8,6 +8,10 @@
         <servlet-name>NewServlet</servlet-name>
         <servlet-class>servlet.NewServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>discountController</servlet-name>
+        <servlet-class>controller.discountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomePage</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/news</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>discountController</servlet-name>
+        <url-pattern>/discount</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
