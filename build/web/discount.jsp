@@ -1,5 +1,5 @@
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
         <meta name="keywords" content="au theme template">
 
         <!-- Title Page-->
-        <title>News Management</title>
+        <title>Discount Management</title>
 
         <!-- Fontfaces CSS-->
         <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -34,10 +34,10 @@
         <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
         <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-        <!-- Main CSS-->
-        <link href="css/theme.css" rel="stylesheet" media="all">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/toastr.min.css">
+        <!-- Main CSS-->
+        <link href="css/theme.css" rel="stylesheet" media="all">
 
     </head>
 
@@ -47,7 +47,7 @@
         %>
         <div class="page-wrapper">
             <!-- HEADER MOBILE-->
-            
+           
             <!-- END MENU SIDEBAR-->
 
             <!-- PAGE CONTAINER-->
@@ -60,30 +60,22 @@
                 <div class="main-content">
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
-                            <div class="row">
+                            <div class="row">                
                                 <div class="col-md-12">
-                                    <h3 class="title-5 m-b-35">List of news</h3>                                    
+
+                                    <div class="table-data__tool-left">
+                                        <h3 class="title-5 m-b-35">Discount Data</h3>
+                                    </div>
+                                    <!-- DATA TABLE -->
                                     <div class="table-data__tool">
                                         <div class="table-data__tool-left">
-                                            <form id="myForm" action="news" method="post">
-                                                <div class="rs-select2--light rs-select2--md">
-                                                    <select class="js-select2" name="sortBy" onchange="submitForm()">
-                                                        <c:set var="so" value="${requestScope.sortBy}"/>
-                                                        <option ${(so == 0)?'selected':''} value="0">Sort by</option>
-<!--                                                        <option ${(so == 1)?'selected':''} value="1">Latest</option>
-                                                        <option ${(so == 2)?'selected':''} value="2">Most viewed</option>-->
-                                                        <c:forEach var="sos" items="${requestScope.sorts}">
-                                                            <option ${(so == sos.id)?'selected':''} value="${sos.id}">${sos.title}</option>
-                                                        </c:forEach>
-                                                    </select>
-                                                    <div class="dropDownSelect2"></div>
-                                                </div>
+                                            <form id="myForm" action="discount" method="post">
                                                 <div class="rs-select2--light rs-select2--md">
                                                     <select class="js-select2" name="groupBy" onchange="submitForm()">
                                                         <c:set var="gr" value="${requestScope.groupBy}"/>
-                                                        <option ${(gr == 0)?'selected':''} value="0">Group by</option>
-                                                        <c:forEach var="g" items="${requestScope.groups}">
-                                                            <option ${(g.id == gr)?'selected':''} value="${g.id}">${g.name}</option>
+                                                        <option ${(gr == 0)?'selected':''} value="0" >Group by</option>
+                                                        <c:forEach var="g" items="${requestScope.types}">
+                                                            <option ${(g.id == gr)?'selected':''} value="${g.id}">${g.title}</option>
                                                         </c:forEach>
                                                     </select>
                                                     <div class="dropDownSelect2"></div>
@@ -92,86 +84,68 @@
                                             </form>
                                         </div>    
                                         <div class="table-data__tool">
-                                            <form class="form-header" action="news" method="post">
-                                                <input class="au-input au-input--xl" type="text" name="search" value="${requestScope.search}" placeholder="Search for title or author of the news" />
+                                            <form class="form-header" action="discount" method="post">
+                                                <input class="au-input au-input--xl" type="text" name="search" value="${requestScope.search}" style="width: 50%" placeholder="Search information related to discount..." />
                                                 <button class="au-btn--submit" type="submit">
                                                     <i class="zmdi zmdi-search"></i>
                                                 </button>
-                                                <input type="hidden" name="sortBy" value="${requestScope.sortBy}">
                                                 <input type="hidden" name="groupBy" value="${requestScope.groupBy}"> 
                                             </form>
                                         </div>
                                         <div class="table-data__tool-right">
-                                            <form action="newsDetail" method="get" style="display: inline-block">
+                                            <form action="discountUpdate" method="post" style="display: inline-block">
                                                 <button class="au-btn au-btn-icon au-btn--green au-btn--small" >
-                                                    <i class="zmdi zmdi-plus"></i>Add news</button>                                            
-                                            </form>  
+                                                    <i class="zmdi zmdi-plus"></i>Add discount</button>                                            
+                                            </form>                                           
                                         </div>
                                     </div>
-                                    <c:if test="${requestScope.news.size() == 0}">
-                                        <h3 class="title-5 m-b-35">Not available result!</h3> 
+                                    <c:if test="${requestScope.discounts.size() == 0}">
+                                        <h4 class="title-5 m-b-35">No items found.</h4> 
                                     </c:if>
-                                    <c:if test="${requestScope.news.size() != 0}">
-                                        <div class="table-responsive table--no-card m-b-30">
-                                            <table class="table table-borderless table-striped table-earning">
+                                    <c:if test="${requestScope.discounts.size() != 0}">
+
+                                        <div class="table-responsive table-responsive-data2">
+                                            <table class="table table-data2">
                                                 <thead>
                                                     <tr>
-                                                        <th>Group name</th>
-                                                        <th>Author</th>
-                                                        <th>Title</th>
-                                                        <th>Post date</th>
-                                                        <th>View</th>
-                                                        <th>Edit</th>
-                                                        <th>In Slide</th>
+                                                        <th>Code</th>
+                                                        <th>Name</th>
+                                                        <th>Amount (%)</th>
+                                                        <!--                                                    <th>From</th>
+                                                                                                            <th>To</th>-->
+                                                        <th>Description</th>
+                                                        <th>Type</th>
+                                                        <th></th>
+
                                                     </tr>
-                                                </thead>                                            
+                                                </thead>
                                                 <tbody>
-                                                    <c:forEach var="n" items="${requestScope.news}">
-                                                        <tr>
-                                                            <td>${n.groupName}</td>
-                                                            <td>${n.author}</td>
-                                                            <td>${n.title}</td>
-                                                            <td>${n.createAt}</td>
-                                                            <td>${n.stt}</td>
+                                                    <c:forEach var="d" items="${requestScope.discounts}">
+                                                        <tr class="tr-shadow">
+                                                            <td>${d.code}</td>
+                                                            <td class="desc">${d.name}</td>
+                                                            <td>${d.amount}</td>                                                        
+    <!--                                                        <td>${d.fromDate}</td>
+                                                            <td>${d.toDate}</td>-->
+                                                            <td>
+                                                                <span class="block-email">${d.description}</span>
+                                                            </td>               
+                                                            <td>${d.type}</td>
                                                             <td>
                                                                 <div class="table-data-feature">
-                                                                    <form action="newsDetail" method="post">
-                                                                        <input type="hidden" name="updateNewsId" value="${n.id}">
+                                                                    <form action="discountUpdate" method="post">
+                                                                        <input type="hidden" name="updateDiscountCode" value="${d.code}">
                                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Edit" type="submit">
                                                                             <i class="zmdi zmdi-edit"></i>
                                                                         </button>
                                                                     </form>
-                                                                    <form action="newsManage" method="post" id="${n.id}">
-                                                                        <input name="act" value="delete" hidden/>
-                                                                        <input type="hidden" name="newsId" value="${n.id}">
-                                                                        <button type="button" class="item" data-toggle="tooltip" data-placement="top" 
-                                                                                title="Delete" type="submit"  onclick="confirmDelete(${n.id})">
+                                                                    <form action="discountUpdate" method="get" id="${d.code}">
+                                                                        <input type="hidden" name="discountCode" value="${d.code}">
+                                                                        <button class="item" data-toggle="tooltip" data-placement="top" 
+                                                                                title="Delete" type="submit"  onclick="confirmDelete(${d.code})">
                                                                             <i class="zmdi zmdi-delete"></i>
                                                                         </button>
-                                                                    </form>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="table-data-feature">
-
-                                                                    <c:if test="${n.stt != 1}">
-                                                                        <form action="newsManage" method="post">
-                                                                            <input name="act" value="isSlide" hidden/>
-                                                                            <input type="hidden" name="newsId" value="${n.id}">
-                                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="inSlide" type="submit">
-                                                                                <i class="zmdi zmdi-lock-open"></i>
-                                                                            </button>
-                                                                        </form>  
-                                                                    </c:if>
-                                                                    <c:if test="${n.stt == 1}">
-                                                                        <form action="newsManage" method="post">
-                                                                            <input name="act" value="notSlide" hidden/>
-                                                                            <input type="hidden" name="newsId" value="${n.id}">
-                                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="notSlide" type="submit">
-                                                                                <i class="zmdi zmdi-lock"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                    </c:if>
+                                                                    </form>                                                                
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -179,11 +153,8 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
-
                                         <div class="product-pagination text-center">
-                                            <form id="myForm1" action="news" method="post">
-                                                <input type="hidden" name="sortBy" value="${requestScope.sortBy}">
+                                            <form id="myForm1" action="discount" method="post">
                                                 <input type="hidden" name="groupBy" value="${requestScope.groupBy}">     
                                                 <input type="hidden" name="search" value="${requestScope.search}">     
 
@@ -209,10 +180,10 @@
                                                 <input type="hidden" name="page" value="1" id="myPage">
                                             </form>                        
                                         </div>
-                                    </c:if>           
+                                        <!-- END DATA TABLE -->  
+                                    </c:if>                                                   
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="copyright">
@@ -225,6 +196,23 @@
                 </div>
             </div>
         </div>
+        <script>
+            function confirmDelete(id) {
+                if (confirm('Are you sure do delete this discount?')) {
+                    var formDelete = document.getElementById(id);
+                    formDelete.submit();
+                }
+            }
+            function submitForm() {
+                document.getElementById("myForm").submit();
+            }
+            function submitForm1(index) {
+                var form1 = document.getElementById("myForm1");
+                var pageInput = document.getElementById("myPage");
+                pageInput.value = index;
+                form1.submit();
+            }
+        </script>    
         <script>
             function showToast(type, title) {
                 switch (type) {
@@ -245,30 +233,10 @@
                 }
             }
         </script>
-        <script>
-            function confirmDelete(id) {
-                if (confirm('Are you sure do delete this news?')) {
-                    var formDelete = document.getElementById(id);
-                    if (formDelete) {
-                        formDelete.submit();
-                    }
-                }
-            }
-        </script> 
-        <script>
-            function submitForm() {
-                document.getElementById("myForm").submit();
-            }
-            function submitForm1(index) {
-                var form1 = document.getElementById("myForm1");
-                var pageInput = document.getElementById("myPage");
-                pageInput.value = index;
-                form1.submit();
-            }
-        </script>
+        
         <script src="js/jquery.min.js"></script>
         <script src="js/toastr.min.js"></script>
-
+        
         <!-- Jquery JS-->
         <script src="vendor/jquery-3.2.1.min.js"></script>
         <!-- Bootstrap JS-->

@@ -5,6 +5,7 @@
 
 package controller;
 
+import Model.Account;
 import Model.Discount;
 import Model.News;
 import java.io.IOException;
@@ -13,80 +14,102 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author Dell
  */
 public class discountController extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet discountController</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet discountController at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String typeId = req.getParameter("groupBy");
+        String search = req.getParameter("search");
+        String page = req.getParameter("page");
+
+        News n = new News();
+        Discount d = new Discount();
+        if (search.isEmpty()) {
+            search = "";
         }
-    } 
+        if (page == null || page.equals("0")) {
+            page = "1";
+        }
+        String type;
+        if (typeId.equals("0")) {
+            typeId = "-1";
+            type = null;
+        } else {
+            type = n.getContentById(Integer.parseInt(typeId)).getContent();
+        }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
-    } 
+        if (Integer.parseInt(page) > calThePage(5, Integer.parseInt(typeId), search)) {
+            page = calThePage(5, Integer.parseInt(typeId), search) + "";
+        }
 
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+        req.setAttribute("groupBy", Integer.parseInt(req.getParameter("groupBy")));
+        req.setAttribute("search", req.getParameter("search"));
+        req.setAttribute("count", calThePage(5, Integer.parseInt(typeId), search));
+        req.setAttribute("page", page);
+        req.setAttribute("discounts", d.getListDiscountByTypeAndSearchAndPage(Integer.parseInt(page), type, search));
+        req.setAttribute("types", n.getListContentsByName("discountFilter"));
+
+        req.getRequestDispatcher("discount.jsp").forward(req, resp);
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
-    public int calThePage(int sizePage,int typeId,String search){
-        Discount d=new Discount();
-        News n =new News();
-        int pages=0;
-        int countDiscounts=0;
-        if(typeId!=-1){
-            
-        }
+    public static void main(String[] args) {
+        Discount d = new Discount();
+        News n = new News();
+        String type = n.getContentById(50).getContent();
+        String se = "a";
+//        System.out.println(type);
+//        System.out.println(se);
+//        System.out.println(d.getListDiscountByTypeAndSearch(type, se).size());
+//      
+        System.out.println(d.getListDiscountByTypeAndSearchAndPage(1, null, null));
     }
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("acc") == null) {
+            req.getRequestDispatcher("403.jsp").forward(req, resp);
+        }
+        Account ch = (Account) session.getAttribute("acc");
+        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("ProductManage"))) {
+            req.getRequestDispatcher("403.jsp").forward(req, resp);
+        }
+        Discount d = new Discount();
+        News n = new News();
+
+        req.setAttribute("types", n.getListContentsByName("discountFilter"));
+        req.setAttribute("groupBy", "0");
+        req.setAttribute("search", null);
+        req.setAttribute("count", calThePage(5, -1, ""));
+        req.setAttribute("page", "1");
+        //req.setAttribute("discounts", d.getListDiscount());
+        req.setAttribute("discounts", d.getListDiscountByTypeAndSearchAndPage(1, null, null));
+
+        req.getRequestDispatcher("discount.jsp").forward(req, resp);
+    }
+
+    public int calThePage(int sizePage, int typeId, String search) {
+        Discount d = new Discount();
+        News n = new News();
+
+        int pages = 0;
+        int countDiscounts = 0;
+        if (typeId != -1) {
+            countDiscounts = d.getListDiscountByTypeAndSearch(n.getContentById(typeId).getContent(), search).size();
+        } else {
+            countDiscounts = d.getListDiscountBySearch(search).size();
+        }
+        if (countDiscounts % sizePage == 0) {
+            pages = countDiscounts / sizePage;
+        } else {
+            pages = countDiscounts / sizePage + 1;
+        }
+        return pages;
+    }
 }

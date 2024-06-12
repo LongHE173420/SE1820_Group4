@@ -16,7 +16,7 @@ public  class DBContext {
     public DBContext()
     {
         try {
-            String url = "jdbc:sqlserver://DESKTOP-F488CFL\\LONG:1433;databaseName=ShoesStore;encrypt=true;trustServerCertificate=true";
+            String url = "jdbc:sqlserver://DESKTOP-F488CFL\\LONG:1433;databaseName=ShoesStore2;encrypt=true;trustServerCertificate=true";
             String user = "sa";
             String pass = "123";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

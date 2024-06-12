@@ -74,7 +74,7 @@ public class newsController extends HttpServlet {
         for (News aNew : news) {
             System.out.println(n.getStt());
         }
-        System.out.println(n.getNewsById(34).getStt());
+        System.out.println(n.getNewsById(4).getStt());
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

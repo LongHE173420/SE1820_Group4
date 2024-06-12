@@ -24,6 +24,14 @@
         <servlet-name>newsManageController</servlet-name>
         <servlet-class>controller.newsManageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>discountDetailController</servlet-name>
+        <servlet-class>controller.discountDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>discountUpdateController</servlet-name>
+        <servlet-class>controller.discountUpdateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomePage</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>newsManageController</servlet-name>
         <url-pattern>/newsManage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>discountDetailController</servlet-name>
+        <url-pattern>/discountDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>discountUpdateController</servlet-name>
+        <url-pattern>/discountUpdate</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
