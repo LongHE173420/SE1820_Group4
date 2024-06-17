@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-
+import dal.*;
 /**
  *
  * @author Dell
@@ -36,8 +36,8 @@ public class newsController extends HttpServlet {
         if (page == null || page.equals("0")) {
             page = "1";
         }
-        News n = new News();
-        NewsGroup ng = new NewsGroup();
+        NewsDAO n = new NewsDAO();
+        NewsGroupDAO ng = new NewsGroupDAO();
         String sortedPhase;
         if (sorted.equals("0")) {
             sortedPhase = "-1";
@@ -69,10 +69,11 @@ public class newsController extends HttpServlet {
         req.getRequestDispatcher("news.jsp").forward(req, resp);
     }
     public static void main(String[] args) {
-        News n = new News();
+        NewsDAO n = new NewsDAO();
+        News news1=new News();
         List<News> news = n.getListByPagesAndGroupAndSortAndSearch(1, "-1", "-1", null);
         for (News aNew : news) {
-            System.out.println(n.getStt());
+            System.out.println(news1.getStt());
         }
         System.out.println(n.getNewsById(4).getStt());
     }
@@ -80,16 +81,16 @@ public class newsController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // display the news page with default page, group, sort
         HttpSession s = req.getSession();
-        if (s.getAttribute("acc") == null) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
-        Account ch = (Account) s.getAttribute("acc");
-        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
+//        if (s.getAttribute("acc") == null) {
+//            req.getRequestDispatcher("403.jsp").forward(req, resp);
+//        }
+//        Account ch = (Account) s.getAttribute("acc");
+//        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
+//            req.getRequestDispatcher("403.jsp").forward(req, resp);
+//        }
         s.removeAttribute("updateNewsId");
-        News n = new News();
-        NewsGroup ng = new NewsGroup();
+        NewsDAO n = new NewsDAO();
+        NewsGroupDAO ng = new NewsGroupDAO();
         List<NewsGroup> listng = ng.getListNewsGroup();
         List<News> listsort = n.getListContentsByName("newsSort");
 
@@ -107,7 +108,7 @@ public class newsController extends HttpServlet {
     }
 
     public int calThePage(int sizePage, int gid, String search) {
-        News n = new News();
+        NewsDAO n = new NewsDAO();
         int pages = 0;
         int countNews = n.getListNewsAndSearch(search).size();
         if (gid != -1) {

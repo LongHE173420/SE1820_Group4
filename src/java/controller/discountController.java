@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+import dal.*;
 /**
  *
  * @author Dell
@@ -28,8 +28,8 @@ public class discountController extends HttpServlet {
         String search = req.getParameter("search");
         String page = req.getParameter("page");
 
-        News n = new News();
-        Discount d = new Discount();
+        NewsDAO n = new NewsDAO();
+        DisCountDAO d = new DisCountDAO();
         if (search.isEmpty()) {
             search = "";
         }
@@ -59,8 +59,8 @@ public class discountController extends HttpServlet {
     }
 
     public static void main(String[] args) {
-        Discount d = new Discount();
-        News n = new News();
+        DisCountDAO d = new DisCountDAO();
+        NewsDAO n = new NewsDAO();
         String type = n.getContentById(50).getContent();
         String se = "a";
 //        System.out.println(type);
@@ -80,8 +80,8 @@ public class discountController extends HttpServlet {
         if (!(ch.getRole().equals("Admin") || ch.getRole().equals("ProductManage"))) {
             req.getRequestDispatcher("403.jsp").forward(req, resp);
         }
-        Discount d = new Discount();
-        News n = new News();
+        DisCountDAO d = new DisCountDAO();
+        NewsDAO n = new NewsDAO();
 
         req.setAttribute("types", n.getListContentsByName("discountFilter"));
         req.setAttribute("groupBy", "0");
@@ -95,8 +95,8 @@ public class discountController extends HttpServlet {
     }
 
     public int calThePage(int sizePage, int typeId, String search) {
-        Discount d = new Discount();
-        News n = new News();
+        DisCountDAO d = new DisCountDAO();
+        NewsDAO n = new NewsDAO();
 
         int pages = 0;
         int countDiscounts = 0;

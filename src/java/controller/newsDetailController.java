@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+import dal.*;
 /**
  *
  * @author Dell
@@ -33,25 +33,32 @@ public class newsDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // go to update news page
         HttpSession s = req.getSession();
-        if (s.getAttribute("acc") == null) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
+//        if (s.getAttribute("acc") == null) {
+//            req.getRequestDispatcher("403.jsp").forward(req, resp);
+//        }
         Account ch = (Account) s.getAttribute("acc");
-        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
+//        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
+//            req.getRequestDispatcher("403.jsp").forward(req, resp);
+//        }
         String nid = (String) s.getAttribute("updateNewsId");
-        News n = new News();
-        NewsGroup ng = new NewsGroup();
-        if (nid == null) {
-            n = null;
-        } else {
-            n = n.getNewsById(Integer.parseInt(nid));
-            String imageFormat = "<p><img src=\"" + n.getImage() + "\" width=\"572\" height=\"322\" /></p>";
-            req.setAttribute("imageFormat", imageFormat);
+        NewsDAO newsDAO = new NewsDAO();
+        NewsGroupDAO newsGroupDAO = new NewsGroupDAO();
+
+        if (nid != null) {
+            try {
+                News news = newsDAO.getNewsById(Integer.parseInt(nid));
+                if (news != null) {
+                    String imageFormat = "<p><img src=\"" + news.getImage() + "\" width=\"572\" height=\"322\" /></p>";
+                    req.setAttribute("imageFormat", imageFormat);
+                    req.setAttribute("selectNews", news);
+                }
+            } catch (NumberFormatException e) {
+                // Handle exception if NID is not a valid integer
+                e.printStackTrace();
+            }
         }
-        req.setAttribute("selectNews", n);
-        req.setAttribute("groups", ng.getListNewsGroupWithoutPolicy());
+
+        req.setAttribute("groups", newsGroupDAO.getListNewsGroupWithoutPolicy());
         req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
     }
 }

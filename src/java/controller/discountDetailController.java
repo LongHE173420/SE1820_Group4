@@ -18,7 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
-
+import dal.*;
 /**
  *
  * @author Dell
@@ -35,7 +35,7 @@ public class discountDetailController extends HttpServlet {
             String description = req.getParameter("description");
             String type = req.getParameter("type");
 
-            Discount d = new Discount();
+            DisCountDAO d = new DisCountDAO();
             List<Discount> dis = d.getListDiscount();
 
             boolean checkCode = true;
@@ -148,7 +148,7 @@ public class discountDetailController extends HttpServlet {
             String description = req.getParameter("description");
 
             HttpSession s = req.getSession();
-            Discount d = new Discount();
+            DisCountDAO d = new DisCountDAO();
             Discount thisDiscount = d.getDisCountByCode(code);
             boolean checkAmount = true;
             if (amount > 100 || amount < 0) {

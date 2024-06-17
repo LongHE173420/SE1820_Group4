@@ -8,7 +8,7 @@ package Model;
  *
  * @author Dell
  */
-class Role {
+public class Role {
     private int roleId;
     private String name;
 

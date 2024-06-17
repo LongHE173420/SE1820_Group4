@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+import dal.*;
 /**
  *
  * @author Dell
@@ -25,11 +25,12 @@ public class newsManageController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession s = req.getSession();
         String act = req.getParameter("act");
-        News n = new News();
+        NewsDAO n = new NewsDAO();
+        News news= new News();
         String nid = req.getParameter("newsId");
         News deletedNews = n.getNewsById(Integer.parseInt(nid));
         String gr = deletedNews.getGroupName();
-        n = n.getContentById(Integer.parseInt(nid));
+        news = n.getContentById(Integer.parseInt(nid));
         if (act.equals("delete")) {
             //Delete news here by id   
             s.removeAttribute("updateNewsId");
@@ -37,7 +38,7 @@ public class newsManageController extends HttpServlet {
             if (gr.equalsIgnoreCase("Policy")) {
                 s.setAttribute("functionToast", "showToast('warning','You can not delete the policy!')");
             } else {
-                if (n.getStt() == 1) {
+                if (news.getStt() == 1) {
                     s.setAttribute("functionToast", "showToast('warning','You can not delete the news currently in slideshare!')");
                 } else {
                     n.DeleteNews(nid);
@@ -52,7 +53,7 @@ public class newsManageController extends HttpServlet {
                 s.setAttribute("functionToast", "showToast('success','Edit slideshare successfully!')");
             }
         } else {
-            if (n.getLink() == null) {
+            if (news.getLink() == null) {
                 n.notSlideBanner(nid);
                 s.setAttribute("functionToast", "showToast('success','Edit slideshare successfully!')");
             }
@@ -62,15 +63,15 @@ public class newsManageController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession s = req.getSession();
-        if (s.getAttribute("acc") == null) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
-        Account ch = (Account) s.getAttribute("acc");
-        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
-        News n = new News();
+//        HttpSession s = req.getSession();
+//        if (s.getAttribute("acc") == null) {
+//            req.getRequestDispatcher("403.jsp").forward(req, resp);
+//        }
+//        Account ch = (Account) s.getAttribute("acc");
+//        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
+//            req.getRequestDispatcher("403.jsp").forward(req, resp);
+//        }
+        NewsDAO n = new NewsDAO();
         req.setAttribute("news", n.getListNews());
         resp.sendRedirect("news");
     }

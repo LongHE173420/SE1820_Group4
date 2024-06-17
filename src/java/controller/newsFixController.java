@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+import dal.*;
 /**
  *
  * @author Dell
@@ -38,8 +38,8 @@ public class newsFixController extends HttpServlet {
         String content = req.getParameter("content").trim();
         String image = req.getParameter("image");
 
-        News n = new News();
-        NewsGroup ng = new NewsGroup();
+        NewsDAO n = new NewsDAO();
+        NewsGroupDAO ng = new NewsGroupDAO();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String formatImage = extractImageSrc(image);
@@ -68,12 +68,12 @@ public class newsFixController extends HttpServlet {
             }
 
         } else {
-            if (!heading.isEmpty() && !author.isEmpty() && !title.isEmpty() && !content.isEmpty()) {
-                String createAt = dtf.format(now);
-                Account a = (Account) s.getAttribute("acc");
-                n.addNews(a.getAccountId(), Integer.parseInt(cateId), title, formatImage, heading, author, createAt, content);
-                s.setAttribute("functionToast", "showToast('success','Add news successfully!')");
-            } else {
+//            if (!heading.isEmpty() && !author.isEmpty() && !title.isEmpty() && !content.isEmpty()) {
+//                String createAt = dtf.format(now);
+//                Account a = (Account) s.getAttribute("acc");
+//                n.addNews(a.getAccountId(), Integer.parseInt(cateId), title, formatImage, heading, author, createAt, content);
+//                s.setAttribute("functionToast", "showToast('success','Add news successfully!')");
+//            } else {
                 s.setAttribute("functionToast", "showToast('info','Some input(s) are blank!')");
                 req.setAttribute("heading", heading);
                 req.setAttribute("title", title);
@@ -86,7 +86,7 @@ public class newsFixController extends HttpServlet {
                 req.setAttribute("groups", ng.getListNewsGroupWithoutPolicy());
                 req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
                 return;
-            }
+            
         }
         resp.sendRedirect("news");
     }
