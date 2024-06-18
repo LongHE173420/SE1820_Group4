@@ -73,7 +73,7 @@ public class newsController extends HttpServlet {
         News news1=new News();
         List<News> news = n.getListByPagesAndGroupAndSortAndSearch(1, "-1", "-1", null);
         for (News aNew : news) {
-            System.out.println(news1.getStt());
+            System.out.println(aNew.getStt());
         }
         System.out.println(n.getNewsById(4).getStt());
     }

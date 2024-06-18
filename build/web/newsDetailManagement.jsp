@@ -16,7 +16,7 @@
         <title>Management</title>
 
         <!-- Fontfaces CSS-->
-        <link href="css/font-face.css" rel="stylesheet" media="all">
+        <link href="css1/font-face.css" rel="stylesheet" media="all">
         <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
         <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
         <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/toastr.min.css">
         <!-- Main CSS-->
-        <link href="css/theme.css" rel="stylesheet" media="all">
+        <link href="css1/theme.css" rel="stylesheet" media="all">
 
     </head>
 
@@ -151,11 +151,11 @@
                                                     <h3 class="title-5 m-b-35">Update policy detail</h3>                                                  
                                                     <div class="form-group">
                                                         <label class="mr-2">Last updated</label>
-                                                        <input type="text" name="updatedAt" class="form-control" value="${sn.updatedAt}" readonly>
+                                                        <input type="text" name="updatedAt" class="form-control" value="${sn.updateAt}" readonly>
                                                     </div>                                                            
                                                     <div class="form-group">
                                                         <label class="mr-2">Posted admin</label>
-                                                        <input type="text" name="admin" value="${sn.adminName}" class="form-control" readonly>
+                                                        <input type="text" name="account" value="${sn.accountName}" class="form-control" readonly>
                                                     </div>                                                                                                                       
                                                     <div class="form-group">
                                                         <label class="mr-2">Title</label>
