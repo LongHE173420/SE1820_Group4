@@ -17,7 +17,7 @@
         <title>Discount Detail Management</title>
 
         <!-- Fontfaces CSS-->
-        <link href="css/font-face.css" rel="stylesheet" media="all">
+        <link href="css1/font-face.css" rel="stylesheet" media="all">
         <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
         <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
         <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -38,7 +38,9 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/toastr.min.css">
         <!-- Main CSS-->
-        <link href="css/theme.css" rel="stylesheet" media="all">
+        <link href="css1/theme.css" rel="stylesheet" media="all">
+        
+        
 
     </head>
 
@@ -46,95 +48,7 @@
         <%
             request.getSession().removeAttribute("functionToast");
         %>
-        <div class="page-wrapper">
-            <!-- HEADER MOBILE-->
-            <header class="header-mobile d-block d-lg-none">
-                <div class="header-mobile__bar">
-                    <div class="container-fluid">
-                        <div class="header-mobile-inner">
-                            <a class="logo" href="home.jsp">
-                                <img src="images/icon/logo.png" alt="CoolAdmin" />
-                            </a>
-                            <button class="hamburger hamburger--slider" type="button">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>    
-                <nav class="navbar-mobile">
-                    <div class="container-fluid">
-                        <ul class="navbar-mobile__list list-unstyled">
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-light fa-user"></i>User management</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li>
-                                        <a href="news.jsp">View user information</a>
-                                    </li>
-                                    <li>
-                                        <a href="newsManagement.jsp">Delete user account</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fab fa-product-hunt"></i></i>Product management</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li>
-                                        <a href="view.html">View list of product</a>
-                                    </li>
-                                    <li>
-                                        <a href="manage.html">Update product information</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-solid fa-newspaper"></i>News management</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li>
-                                        <a href="news">View list of news</a>
-                                    </li>
-                                    <li>
-                                        <a href="newsManage">Update news information</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-shopping-cart"></i>Order management</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li>
-                                        <a href="view.html">View list of orders</a>
-                                    </li>
-                                    <li>
-                                        <a href="view.html">View buying history</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-regular fa-comment"></i>Comment management</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li>
-                                        <a href="view.html">View list of comments</a>
-                                    </li>
-                                    <li>
-                                        <a href="manage.html">Delete comment</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-tablet-alt"></i>Client management</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+        
 
             </header>
             <!-- END HEADER MOBILE-->
@@ -161,7 +75,7 @@
                                         <c:if test="${requestScope.updateDiscount == null}">
 
                                             <form action="discountDetail" method="post">
-                                                <h3 class="title-5 m-b-35">Add discount detail</h3>
+                                               
 
                                                 <div class="form-group">
                                                     <label class="mr-2">Code</label>

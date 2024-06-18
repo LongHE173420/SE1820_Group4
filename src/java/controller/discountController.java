@@ -73,13 +73,13 @@ public class discountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if (session.getAttribute("acc") == null) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
-        Account ch = (Account) session.getAttribute("acc");
-        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("ProductManage"))) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
+//        if (session.getAttribute("acc") == null) {
+//            req.getRequestDispatcher("403.jsp").forward(req, resp);
+//        }
+//        Account ch = (Account) session.getAttribute("acc");
+//        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("ProductManage"))) {
+//            req.getRequestDispatcher("403.jsp").forward(req, resp);
+//        }
         DisCountDAO d = new DisCountDAO();
         NewsDAO n = new NewsDAO();
 

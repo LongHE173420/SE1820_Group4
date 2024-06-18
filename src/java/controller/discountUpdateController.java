@@ -6,6 +6,7 @@
 package controller;
 
 import Model.Discount;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -69,7 +70,7 @@ public class discountUpdateController extends HttpServlet {
             }
             req.setAttribute("updateDiscount", updateDiscount);
         }
-        Product p = new Product();
+        ProductDAO p = new ProductDAO();
         List<Product> ps =  p.getListProduct();
         HttpSession s = req.getSession();
         s.setAttribute("products", ps);

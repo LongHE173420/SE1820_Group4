@@ -185,6 +185,7 @@ public class DisCountDAO {
         return null;
     }
 
+   
     public Discount getProductDiscountByCode(String c) {
         try {
             connect();
