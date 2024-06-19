@@ -237,7 +237,70 @@ public class AccountDAO extends DBContext {
         }
         return aList;
     }
+    
+    private boolean checkBan(String account) {
+        if (account.equals("Active")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+  
+    public Account loginUser(String user, String password) {
+        Account account=new Account();
+        
+        try {
+            connect();
+           String query = "  select [Account].AccountID, [role], firstName, lastName, mobile, email, passwordHash, lastLogin from [Account] \n"
+                + " inner join [Role] on [Account].roleId = [Role].id  where email =? and [passwordHash] = ?";
+            pstm = cnn.prepareStatement(query);
+            pstm.setString(1, user);
+            pstm.setString(2, password);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                
+                int accountId = rs.getInt("AccountID");
+                String role = rs.getString("role");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String phone = rs.getString("mobile");
+                String email = rs.getString("email");
+                String passwordHash = rs.getString("passwordHash");
+                String lastLogin = convertDateTimeFormat(rs.getString("lastLogin"));
+                account= new Account(accountId, firstName, lastName, phone, email, passwordHash, lastLogin, role);
+                
+            }
+            cnn.close();
+        } catch (Exception e) {
+            System.out.println("Login: " + e.getMessage());
+        }
+        return account;
+    }
+public static void main(String[] args) {
+        // Thông tin đăng nhập cần kiểm tra
+        String username = "long@gmail.com";
+        String password = "123";
 
+        // Tạo đối tượng của lớp chứa phương thức loginUser
+        AccountDAO yourClass = new AccountDAO();
+
+        // Gọi phương thức loginUser và nhận kết quả
+        Account account = yourClass.loginUser(username, password);
+
+        // Kiểm tra kết quả và in ra thông tin
+        if (account != null) {
+            System.out.println("Đăng nhập thành công!");
+            System.out.println("AccountID: " + account.getAccountId());
+            System.out.println("First Name: " + account.getFirstName());
+            System.out.println("Last Name: " + account.getLastName());
+            System.out.println("Phone: " + account.getPhone());
+            System.out.println("Email: " + account.getEmail());
+            System.out.println("Role: " + account.getRole());
+            System.out.println("Last Login: " + account.getLastLogin());
+        } else {
+            System.out.println("Đăng nhập thất bại hoặc tài khoản bị khóa.");
+        }
+    }
     public String convertDateTimeFormat(String inputDateTime) {
         if (inputDateTime == null) {
             return null;

@@ -52,7 +52,7 @@
 
             </header>
             <!-- END HEADER MOBILE-->
-
+            <jsp:include page="header.jsp"/>
             <!-- MENU SIDEBAR-->
             
             <!-- END MENU SIDEBAR-->
@@ -260,7 +260,7 @@
             }
         </script>
 
-
+<jsp:include page="footer.jsp"/>
         <script src="js/jquery.min.js"></script>
         <script src="js/toastr.min.js"></script>
         <!-- Jquery JS-->
