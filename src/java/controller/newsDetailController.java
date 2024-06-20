@@ -33,13 +33,13 @@ public class newsDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // go to update news page
         HttpSession s = req.getSession();
-//        if (s.getAttribute("acc") == null) {
-//            req.getRequestDispatcher("403.jsp").forward(req, resp);
-//        }
+        if (s.getAttribute("acc") == null) {
+            req.getRequestDispatcher("403.jsp").forward(req, resp);
+        }
         Account ch = (Account) s.getAttribute("acc");
-//        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
-//            req.getRequestDispatcher("403.jsp").forward(req, resp);
-//        }
+        if (!(ch.getRoleID()==1 || ch.getRoleID()==3)) {
+            req.getRequestDispatcher("403.jsp").forward(req, resp);
+        }
         String nid = (String) s.getAttribute("updateNewsId");
         NewsDAO newsDAO = new NewsDAO();
         NewsGroupDAO newsGroupDAO = new NewsGroupDAO();

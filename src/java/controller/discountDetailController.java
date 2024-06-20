@@ -123,12 +123,12 @@ public class discountDetailController extends HttpServlet {
                         req.getRequestDispatcher("discountDetailManagement.jsp").forward(req, resp);
                     }
                 } else {
-//                int number = Integer.parseInt(req.getParameter("number"));
-//                int userid = Integer.parseInt(req.getParameter("userId"));
+                int number = Integer.parseInt(req.getParameter("number"));
+                int userid = Integer.parseInt(req.getParameter("userId"));
                     d.addDiscount(code, name, amount, description, type);
-//                d.addUserDiscount(userid, code, number);
+                d.addUserDiscount(userid, code, number);
                     s.setAttribute("functionToast", "showToast('success','Add discount successfully!')");
-                    //req.getRequestDispatcher("discount").forward(req, resp);
+                    req.getRequestDispatcher("discount").forward(req, resp);
                     resp.sendRedirect("discount");
                 }
             } else {

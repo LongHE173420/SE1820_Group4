@@ -26,28 +26,38 @@ public class newsFixController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // do the task update or add news
+    HttpSession s = req.getSession();
+    String submitType = req.getParameter("submit");
 
-        HttpSession s = req.getSession();
-        String submitType = req.getParameter("submit");
+    String author = req.getParameter("author");
+    String cateId = req.getParameter("cateId");
+    String title = req.getParameter("title");
+    String heading = req.getParameter("heading");
+    String content = req.getParameter("content");
+    String image = req.getParameter("image");
 
-        String author = req.getParameter("author").trim();
-        String cateId = req.getParameter("cateId");
-        String title = req.getParameter("title").trim();
-        String heading = req.getParameter("heading").trim();
-        String content = req.getParameter("content").trim();
-        String image = req.getParameter("image");
+    // Trim the inputs to remove any leading or trailing spaces
+    author = (author != null) ? author.trim() : "";
+    title = (title != null) ? title.trim() : "";
+    heading = (heading != null) ? heading.trim() : "";
+    content = (content != null) ? content.trim() : "";
 
-        NewsDAO n = new NewsDAO();
-        NewsGroupDAO ng = new NewsGroupDAO();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        String formatImage = extractImageSrc(image);
-        if (formatImage == null) {
-            formatImage = "";
-        }
+    NewsDAO n = new NewsDAO();
+    NewsGroupDAO ng = new NewsGroupDAO();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    String formatImage = extractImageSrc(image);
+    if (formatImage == null) {
+        formatImage = "";
+    }
+
+    try {
         if (submitType.equals("1")) {
             String newsId = req.getParameter("newsId");
+            if (newsId == null || cateId == null) {
+                throw new IllegalArgumentException("News ID or Category ID is missing.");
+            }
+
             String cateName = ng.getNewsGroupById(Integer.parseInt(cateId)).getName();
             String updateAt = dtf.format(now);
             if (!heading.isEmpty() && !author.isEmpty() && !title.isEmpty() && !content.isEmpty()) {
@@ -66,14 +76,17 @@ public class newsFixController extends HttpServlet {
                 req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
                 return;
             }
-
         } else {
-//            if (!heading.isEmpty() && !author.isEmpty() && !title.isEmpty() && !content.isEmpty()) {
-//                String createAt = dtf.format(now);
-//                Account a = (Account) s.getAttribute("acc");
-//                n.addNews(a.getAccountId(), Integer.parseInt(cateId), title, formatImage, heading, author, createAt, content);
-//                s.setAttribute("functionToast", "showToast('success','Add news successfully!')");
-//            } else {
+            if (cateId == null) {
+                throw new IllegalArgumentException("Category ID is missing.");
+            }
+
+            if (!heading.isEmpty() && !author.isEmpty() && !title.isEmpty() && !content.isEmpty()) {
+                String createAt = dtf.format(now);
+                Account a = (Account) s.getAttribute("acc");
+                n.addNews(a.getAccountID(), Integer.parseInt(cateId), title, formatImage, heading, author, createAt, content);
+                s.setAttribute("functionToast", "showToast('success','Add news successfully!')");
+            } else {
                 s.setAttribute("functionToast", "showToast('info','Some input(s) are blank!')");
                 req.setAttribute("heading", heading);
                 req.setAttribute("title", title);
@@ -86,10 +99,17 @@ public class newsFixController extends HttpServlet {
                 req.setAttribute("groups", ng.getListNewsGroupWithoutPolicy());
                 req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
                 return;
-            
+            }
         }
         resp.sendRedirect("news");
+    } catch (NumberFormatException e) {
+        s.setAttribute("functionToast", "showToast('error','Invalid input: " + e.getMessage() + "')");
+        req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
+    } catch (IllegalArgumentException e) {
+        s.setAttribute("functionToast", "showToast('error','" + e.getMessage() + "')");
+        req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
     }
+}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

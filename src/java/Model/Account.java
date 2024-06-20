@@ -4,89 +4,80 @@
  */
 package Model;
 
-import dal.DBContext;
-import java.sql.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
- * @author Dell
+ * @author quyen
  */
 public class Account {
-    private int accountId;
-    private int roleId;
-    private String firstName;
-    private String lastName;
+
+    private int accountID;
+    private String fname;
+    private String lname;
+    private String dob;
     private String phone;
     private String email;
     private String passwordHash;
+    private int roleID;
+    private String address;
+    private String status;
+    private String registerAt;
     private String lastLogin;
-    
-    private String role;
-
+    private String lastLogout;
+     
     public Account() {
     }
-   
 
-    public Account(int accountId, String firstName, String lastName, String phone, String email, String passwordHash, String lastLogin, String role) {
-        this.accountId = accountId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    
+    public Account(int accountID, String fname, String lname, String dob, String phone, String email, String passwordHash, int roleID, String address, String status, String registerAt, String lastLogin, String lastLogout) {
+        this.accountID = accountID;
+        this.fname = fname;
+        this.lname = lname;
+        this.dob = dob;
         this.phone = phone;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.roleID = roleID;
+        this.address = address;
+        this.status = status;
+        this.registerAt = registerAt;
         this.lastLogin = lastLogin;
-        this.role = role;
+        this.lastLogout = lastLogout;
+        
     }
 
-    public Account(int roleId, String firstName, String lastName, String phone, String email, String passwordHash) {
-        this.roleId = roleId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.email = email;
-        this.passwordHash = passwordHash;
+    public int getAccountID() {
+        return accountID;
     }
 
-    public Account(int roleId, String role) {
-        this.roleId = roleId;
-        this.role = role;
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 
-    public int getAccountId() {
-        return accountId;
+    
+
+    public String getFname() {
+        return fname;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public String getLname() {
+        return lname;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getDob() {
+        return dob;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
     public String getPhone() {
@@ -113,6 +104,38 @@ public class Account {
         this.passwordHash = passwordHash;
     }
 
+    public int getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRegisterAt() {
+        return registerAt;
+    }
+
+    public void setRegisterAt(String registerAt) {
+        this.registerAt = registerAt;
+    }
+
     public String getLastLogin() {
         return lastLogin;
     }
@@ -121,11 +144,17 @@ public class Account {
         this.lastLogin = lastLogin;
     }
 
-    public String getRole() {
-        return role;
+    public String getLastLogout() {
+        return lastLogout;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }  
+    public void setLastLogout(String lastLogout) {
+        this.lastLogout = lastLogout;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" + "accountID=" + accountID + ", fname=" + fname + ", lname=" + lname + ", dob=" + dob + ", phone=" + phone + ", email=" + email + ", passwordHash=" + passwordHash + ", roleID=" + roleID + ", address=" + address + ", status=" + status + ", registerAt=" + registerAt + ", lastLogin=" + lastLogin + ", lastLogout=" + lastLogout + '}';
+    }
+
 }

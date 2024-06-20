@@ -104,9 +104,9 @@ public class discountUpdateController extends HttpServlet {
                 resp.sendRedirect("discount");
             }
         }
-//        else if (type.equalsIgnoreCase("User")) {
-//            d.deleteUserDiscount(code);
-//        }
+        else if (type.equalsIgnoreCase("User")) {
+            d.deleteUserDiscount(code);
+        }
     }
 
 //    public static void main(String[] args) {

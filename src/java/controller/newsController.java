@@ -75,19 +75,19 @@ public class newsController extends HttpServlet {
         for (News aNew : news) {
             System.out.println(aNew.getStt());
         }
-        System.out.println(n.getNewsById(4).getStt());
+        System.out.println(n.getNewsById(1).getStt());
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // display the news page with default page, group, sort
         HttpSession s = req.getSession();
-//        if (s.getAttribute("acc") == null) {
-//            req.getRequestDispatcher("403.jsp").forward(req, resp);
-//        }
-//        Account ch = (Account) s.getAttribute("acc");
-//        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
-//            req.getRequestDispatcher("403.jsp").forward(req, resp);
-//        }
+        if (s.getAttribute("acc") == null) {
+            req.getRequestDispatcher("403.jsp").forward(req, resp);
+        }
+        Account ch = (Account) s.getAttribute("acc");
+        if (!(ch.getRoleID()==1 || ch.getRoleID()==3)) {
+            req.getRequestDispatcher("403.jsp").forward(req, resp);
+        }
         s.removeAttribute("updateNewsId");
         NewsDAO n = new NewsDAO();
         NewsGroupDAO ng = new NewsGroupDAO();

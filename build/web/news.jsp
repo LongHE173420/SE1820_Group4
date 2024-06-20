@@ -6,6 +6,43 @@
 <html lang="en">
 
     <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Fables">
+        <meta name="author" content="Enterprise Development">
+        <link rel="shortcut icon" href="assets/custom/images/shortcut.png">
+
+      
+
+        <!-- animate.css-->  
+        <link href="assets/vendor/animate.css-master/animate.min.css" rel="stylesheet">
+        <!-- Load Screen -->
+        <link href="assets/vendor/loadscreen/css/spinkit.css" rel="stylesheet">
+        <!-- GOOGLE FONT -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+        <!-- Font Awesome 5 -->
+        <link href="assets/vendor/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
+        <!-- Fables Icons -->
+        <link href="assets/custom/css/fables-icons.css" rel="stylesheet"> 
+        <!-- Bootstrap CSS --> 
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap/css/bootstrap-4-navbar.css" rel="stylesheet">
+        <!-- portfolio filter gallery -->
+        <link href="assets/vendor/portfolio-filter-gallery/portfolio-filter-gallery.css" rel="stylesheet">
+        <!-- Video Background -->
+        <link href="assets/vendor/video-background/video-background.css" rel="stylesheet"> 
+        <!-- FANCY BOX -->
+        <link href="assets/vendor/fancybox-master/jquery.fancybox.min.css" rel="stylesheet"> 
+        <!-- RANGE SLIDER -->
+        <link href="assets/vendor/range-slider/range-slider.css" rel="stylesheet">
+        <!-- OWL CAROUSEL  --> 
+        <link href="assets/vendor/owlcarousel/owl.carousel.min.css" rel="stylesheet">
+        <link href="assets/vendor/owlcarousel/owl.theme.default.min.css" rel="stylesheet">
+        <!-- FABLES CUSTOM CSS FILE -->
+        <link href="assets/custom/css/custom.css" rel="stylesheet">
+        <!-- FABLES CUSTOM CSS RESPONSIVE FILE -->
+        <link href="assets/custom/css/custom-responsive.css" rel="stylesheet">
         <!-- Required meta tags-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +75,36 @@
         <link href="css1/theme.css" rel="stylesheet" media="all">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/toastr.min.css">
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
 
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            .table-data-feature {
+                display: flex;
+                align-items: center; /* Aligns items vertically in the center */
+                justify-content: flex-start; /* Starts items from the beginning of the flex container */
+            }
+
+            .table-data-feature form {
+                margin: 0; /* Removes margin around the form */
+                display: inline-block; /* Displays form in line */
+            }
+
+            .table-data-feature button {
+                background: none; /* Removes any background styling from the buttons */
+                border: none; /* Removes the border */
+                cursor: pointer; /* Changes cursor to pointer on hover */
+                padding: 8px; /* Adds padding for better touch area */
+            }
+        </style>
     </head>
 
     <body class="animsition" onload="${sessionScope.functionToast}">
@@ -47,13 +113,14 @@
         %>
         <div class="page-wrapper">
             <!-- HEADER MOBILE-->
+            <jsp:include page="header.jsp"/>
             
             <!-- END MENU SIDEBAR-->
 
             <!-- PAGE CONTAINER-->
             <div class="page-container">
                 <!-- HEADER DESKTOP-->
-                
+
                 <!-- END HEADER DESKTOP-->
 
                 <!-- MAIN CONTENT-->
@@ -122,7 +189,7 @@
                                                         <th>Post date</th>
                                                         <th>View</th>
                                                         <th>Edit</th>
-                                                        <th>In Slide</th>
+
                                                     </tr>
                                                 </thead>                                            
                                                 <tbody>
@@ -151,29 +218,7 @@
                                                                     </form>
                                                                 </div>
                                                             </td>
-                                                            <td>
-                                                                <div class="table-data-feature">
 
-                                                                    <c:if test="${n.stt != 1}">
-                                                                        <form action="newsManage" method="post">
-                                                                            <input name="act" value="isSlide" hidden/>
-                                                                            <input type="hidden" name="newsId" value="${n.id}">
-                                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="inSlide" type="submit">
-                                                                                <i class="zmdi zmdi-lock-open"></i>
-                                                                            </button>
-                                                                        </form>  
-                                                                    </c:if>
-                                                                    <c:if test="${n.stt == 1}">
-                                                                        <form action="newsManage" method="post">
-                                                                            <input name="act" value="notSlide" hidden/>
-                                                                            <input type="hidden" name="newsId" value="${n.id}">
-                                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="notSlide" type="submit">
-                                                                                <i class="zmdi zmdi-lock"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                    </c:if>
-                                                                </div>
-                                                            </td>
                                                         </tr>
                                                     </c:forEach>                                                
                                                 </tbody>
@@ -292,6 +337,21 @@
 
         <!-- Main JS-->
         <script src="js/main.js"></script>
+        
+        <jsp:include page="footer.jsp"/>
+
+        <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <script src="assets/vendor/timeline/jquery.timelify.js"></script>
+        <script src="assets/vendor/loadscreen/js/ju-loading-screen.js"></script>
+        <script src="assets/vendor/jquery-circle-progress/circle-progress.min.js"></script>
+        <script src="assets/vendor/popper/popper.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap-4-navbar.js"></script>
+        <script src="assets/vendor/owlcarousel/owl.carousel.min.js"></script> 
+        <script src="assets/vendor/fancybox-master/jquery.fancybox.min.js"></script>
+        <script src="assets/vendor/video-background/jquery.mb.YTPlayer.js"></script>
+        <script src="assets/vendor/WOW-master/dist/wow.min.js"></script>
+        <script src="assets/custom/js/custom.js"></script> 
 
     </body>
 

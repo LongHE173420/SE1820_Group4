@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -71,6 +72,13 @@ public class NewsDAO {
             System.out.println("getListNews" + e.getMessage());
         }
         return data;
+    }
+    public static void main(String[] args) {
+        NewsDAO dao = new NewsDAO();
+        List<News> list = dao.getNewsByGid(1);
+        for (News news : list) {
+            System.out.println(news);
+        }
     }
    
     public News getNewsById(int nId) {
@@ -223,6 +231,7 @@ public class NewsDAO {
             System.out.println("addNews: " + e.getMessage());
         }
     }
+   
 
     public void updateNews(int gid, String title, String image, String heading, String author, String updatedAt, String content, int id) {
         try {

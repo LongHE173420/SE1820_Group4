@@ -112,7 +112,7 @@
                     <c:if test="${sessionScope.acc != null}">
                         <div class="dropdown">
                             <a href="#_" class="fables-third-text-color dropdown-toggle right px-3 px-md-2 px-lg-4 fables-second-hover-color top-header-link max-line-height position-relative" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ${sessionScope. acc.getLname()} 
+                                ${sessionScope.acc.getLname()} 
                             </a>
                             <div class="nav-item dropdown">
                                 <ul style="list-style-type: none" class="dropdown-menu" aria-labelledby="sub-nav1">

@@ -218,4 +218,9 @@ public class News {
         this.accountName = accountName;
     }
 
+    @Override
+    public String toString() {
+        return "News{" + "id=" + id + ", accountID=" + accountID + ", groupId=" + groupId + ", title=" + title + ", heading=" + heading + ", author=" + author + ", image=" + image + ", view=" + view + ", stt=" + stt + ", link=" + link + ", createAt=" + createAt + ", updateAt=" + updateAt + ", content=" + content + ", groupName=" + groupName + ", accountName=" + accountName + '}';
+    }
+
 }

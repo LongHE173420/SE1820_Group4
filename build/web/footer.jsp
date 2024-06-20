@@ -30,9 +30,9 @@
             <div class="col-12 col-sm-6 col-lg-4">
                 <h2 class="font-20 semi-font fables-second-border-color border-bottom pb-3 mb-3">EXPLORE OUR SITE</h2>
                 <ul class="nav fables-footer-links">
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about1.html">About Us</a></li>
                     <li><a href="contactus.html">Contact Us</a></li> 
-                    <li><a href="news.html">News</a></li> 
+                    <li><a href="news">News</a></li> 
                 </ul>
             </div>
         </div> 

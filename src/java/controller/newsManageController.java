@@ -63,14 +63,14 @@ public class newsManageController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        HttpSession s = req.getSession();
-//        if (s.getAttribute("acc") == null) {
-//            req.getRequestDispatcher("403.jsp").forward(req, resp);
-//        }
-//        Account ch = (Account) s.getAttribute("acc");
-//        if (!(ch.getRole().equals("Admin") || ch.getRole().equals("NewsManage"))) {
-//            req.getRequestDispatcher("403.jsp").forward(req, resp);
-//        }
+        HttpSession s = req.getSession();
+        if (s.getAttribute("acc") == null) {
+            req.getRequestDispatcher("403.jsp").forward(req, resp);
+        }
+        Account ch = (Account) s.getAttribute("acc");
+        if (!(ch.getRoleID()==1 || ch.getRoleID()==2)) {
+            req.getRequestDispatcher("403.jsp").forward(req, resp);
+        }
         NewsDAO n = new NewsDAO();
         req.setAttribute("news", n.getListNews());
         resp.sendRedirect("news");
