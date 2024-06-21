@@ -41,25 +41,18 @@ public class newsDetailController extends HttpServlet {
             req.getRequestDispatcher("403.jsp").forward(req, resp);
         }
         String nid = (String) s.getAttribute("updateNewsId");
-        NewsDAO newsDAO = new NewsDAO();
-        NewsGroupDAO newsGroupDAO = new NewsGroupDAO();
-        NewsGroup newsGroup=new NewsGroup();
-
-        if (nid != null) {
-            try {
-                News news = newsDAO.getNewsById(Integer.parseInt(nid));
-                if (news != null) {
-                    String imageFormat = "<p><img src=\"" + news.getImage() + "\" width=\"572\" height=\"322\" /></p>";
-                    req.setAttribute("imageFormat", imageFormat);
-                    req.setAttribute("selectNews", news);
-                }
-            } catch (NumberFormatException e) {
-                // Handle exception if NID is not a valid integer
-                e.printStackTrace();
-            }
+        NewsDAO n = new NewsDAO();
+        NewsGroupDAO ng = new NewsGroupDAO();
+        News news=new News();
+        if (nid == null) {
+            n = null;
+        } else {
+            news = n.getNewsById(Integer.parseInt(nid));
+            String imageFormat = "<p><img src=\"" + news.getImage() + "\" width=\"572\" height=\"322\" /></p>";
+            req.setAttribute("imageFormat", imageFormat);
         }
-        req.setAttribute("newsGroup", newsGroup);
-        req.setAttribute("groups", newsGroupDAO.getListNewsGroupWithoutPolicy());
+        req.setAttribute("selectNews", n);
+        req.setAttribute("groups", ng.getListNewsGroupWithoutPolicy());
         req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
     }
 }

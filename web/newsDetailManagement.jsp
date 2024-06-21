@@ -98,7 +98,7 @@
                                             </c:if>
                                             <c:if test="${requestScope.selectNews != null}">
                                                 <c:set var="sn" value="${requestScope.selectNews}"/>
-                                                <c:set var="newsGroup" value="${requestScope.newsGroup}"/>
+                                               
                                                     <h3 class="title-5 m-b-35">Update news detail</h3>                                                  
                                                     <div class="form-group">
                                                         <label class="mr-2">Last updated</label>
@@ -124,8 +124,9 @@
                                                         <label class="mr-2">Category</label>
                                                         <select name="cateId">
                                                             
-                                                            <c:forEach var="g" items="${requestScope.groups}">
-                                                                <option ${(g.id == sn.getGroupID())?'selected':''} value="${g.id}">${g.name}</option>
+                                                            <c:forEach var="g" items="${requestScope.news}">
+                                                                <c:set var="newsGroup" value="${requestScope.newsGroup}"/>
+                                                                <option ${(g.id == newsGroup.getGroupID())?'selected':''} value="${g.id}">${newsGroup.name}</option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
@@ -142,7 +143,10 @@
                                                         <label class="mr-2">Content:</label>
                                                         <textarea rows="20" name="content" class="tinymce">${sn.content}</textarea>
                                                     </div>
-                                                
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button class="au-btn au-btn-icon au-btn--blue au-btn--small" type="submit" name="submit" value="1">
+                                                        Submit</button>        
+                                                </div>    
                                                     
                                             </c:if>                                
                                         </form>

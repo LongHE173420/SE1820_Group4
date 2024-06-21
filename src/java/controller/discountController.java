@@ -53,7 +53,7 @@ public class discountController extends HttpServlet {
         req.setAttribute("count", calThePage(5, Integer.parseInt(typeId), search));
         req.setAttribute("page", page);
         req.setAttribute("discounts", d.getListDiscountByTypeAndSearchAndPage(Integer.parseInt(page), type, search));
-        req.setAttribute("types", n.getListContentsByName("discountFilter"));
+       
 
         req.getRequestDispatcher("discount.jsp").forward(req, resp);
     }
