@@ -5,13 +5,8 @@
 <html lang="en">
 
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Fables">
-        <meta name="author" content="Enterprise Development">
-        <link rel="shortcut icon" href="assets/custom/images/shortcut.png">
-
         
+         <title> Home </title>
 
         <!-- animate.css-->  
         <link href="assets/vendor/animate.css-master/animate.min.css" rel="stylesheet">
@@ -41,12 +36,6 @@
         <link href="assets/custom/css/custom.css" rel="stylesheet">
         <!-- FABLES CUSTOM CSS RESPONSIVE FILE -->
         <link href="assets/custom/css/custom-responsive.css" rel="stylesheet">
-        <!-- Required meta tags-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="au theme template">
-        <meta name="author" content="Hau Nguyen">
-        <meta name="keywords" content="au theme template">
 
         <!-- Title Page-->
         <title>Management</title>
@@ -69,8 +58,8 @@
         <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
         <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/toastr.min.css">
+        <link rel="stylesheet" href="css1/bootstrap.min.css">
+        <link rel="stylesheet" href="css1/toastr.min.css">
         <!-- Main CSS-->
         <link href="css1/theme.css" rel="stylesheet" media="all">
 
@@ -111,7 +100,14 @@
                                                     <label class="mr-2">Title</label>
                                                     <textarea name="title" cols="100" rows="2" class="form-control" value="${requestScope.title}"></textarea>
                                                 </div>
-                                               
+                                               <div class="form-group d-flex">
+                                                        <label class="mr-2">Category</label>
+                                                        <select name="cateId">
+                                                            <c:forEach var="g" items="${requestScope.groups}">
+                                                                <option ${(g.id == sn.getGroupID())?'selected':''} value="${g.id}">${g.name}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
                                                 <div class="form-group">
                                                     <label class="mr-2">Avatar news</label>                                                   
                                                     <textarea rows="20" name="image" id="thumbnail">${requestScope.imageFormat}</textarea>
@@ -393,7 +389,7 @@
         <!-- Main JS-->
         <script src="js/main.js"></script>
         
-        <jsp:include page="footer.jsp"/>
+      
 
         <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
         <script src="assets/vendor/timeline/jquery.timelify.js"></script>
@@ -407,6 +403,8 @@
         <script src="assets/vendor/video-background/jquery.mb.YTPlayer.js"></script>
         <script src="assets/vendor/WOW-master/dist/wow.min.js"></script>
         <script src="assets/custom/js/custom.js"></script>  
+        <script>
+        </script>
 
     </body>
 

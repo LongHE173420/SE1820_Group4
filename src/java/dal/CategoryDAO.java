@@ -24,7 +24,7 @@ public class CategoryDAO extends DBContext {
     
     private void connect() {
         try {
-            cnn = (new DBContext()).connection;
+            cnn = (new DBContext()).conn;
             if (cnn != null) {
                 System.out.println("Connect category success");
             } else {

@@ -24,7 +24,7 @@ public class ProductDAO {
 
     private void connect() {
         try {
-            cnn = (new DBContext()).connection;
+            cnn = (new DBContext()).conn;
             if (cnn != null) {
             } else {
                 System.out.println("Connect Product fail");

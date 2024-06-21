@@ -13,7 +13,7 @@
         <meta name="author" content="Enterprise Development">
         <link rel="shortcut icon" href="assets/custom/images/shortcut.png">
 
-      
+        <title> Home </title>
 
         <!-- animate.css-->  
         <link href="assets/vendor/animate.css-master/animate.min.css" rel="stylesheet">
@@ -43,12 +43,6 @@
         <link href="assets/custom/css/custom.css" rel="stylesheet">
         <!-- FABLES CUSTOM CSS RESPONSIVE FILE -->
         <link href="assets/custom/css/custom-responsive.css" rel="stylesheet">
-        <!-- Required meta tags-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="au theme template">
-        <meta name="author" content="Hau Nguyen">
-        <meta name="keywords" content="au theme template">
 
         <!-- Title Page-->
         <title>News Management</title>
@@ -73,8 +67,8 @@
 
         <!-- Main CSS-->
         <link href="css1/theme.css" rel="stylesheet" media="all">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/toastr.min.css">
+        <link rel="stylesheet" href="css1/bootstrap.min.css">
+        <link rel="stylesheet" href="css1/toastr.min.css">
         <style>
             table {
                 width: 100%;
@@ -187,7 +181,7 @@
                                                         <th>Author</th>
                                                         <th>Title</th>
                                                         <th>Post date</th>
-                                                        <th>View</th>
+                                                        
                                                         <th>Edit</th>
 
                                                     </tr>
@@ -199,7 +193,7 @@
                                                             <td>${n.author}</td>
                                                             <td>${n.title}</td>
                                                             <td>${n.createAt}</td>
-                                                            <td>${n.stt}</td>
+                                                            
                                                             <td>
                                                                 <div class="table-data-feature">
                                                                     <form action="newsDetail" method="post">
@@ -228,7 +222,7 @@
 
                                         <div class="product-pagination text-center">
                                             <form id="myForm1" action="news" method="post">
-                                                <input type="hidden" name="sortBy" value="${requestScope.sortBy}">
+                                                
                                                 <input type="hidden" name="groupBy" value="${requestScope.groupBy}">     
                                                 <input type="hidden" name="search" value="${requestScope.search}">     
 
@@ -338,7 +332,7 @@
         <!-- Main JS-->
         <script src="js/main.js"></script>
         
-        <jsp:include page="footer.jsp"/>
+        
 
         <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
         <script src="assets/vendor/timeline/jquery.timelify.js"></script>
@@ -351,7 +345,9 @@
         <script src="assets/vendor/fancybox-master/jquery.fancybox.min.js"></script>
         <script src="assets/vendor/video-background/jquery.mb.YTPlayer.js"></script>
         <script src="assets/vendor/WOW-master/dist/wow.min.js"></script>
-        <script src="assets/custom/js/custom.js"></script> 
+        <script src="assets/custom/js/custom.js"></script>  
+        <script>
+        </script> 
 
     </body>
 

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public  class DBContext {
-    public Connection connection;
+    public Connection conn;
     public DBContext()
     {
         try {
@@ -20,7 +20,7 @@ public  class DBContext {
             String user = "sa";
             String pass = "123";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, user, pass);
+            conn = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

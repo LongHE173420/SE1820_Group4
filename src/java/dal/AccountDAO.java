@@ -30,7 +30,7 @@ public class AccountDAO extends DBContext {
 
     private void connect() {
         try {
-            cnn = (new DBContext().connection);
+            cnn = (new DBContext().conn);
             if (cnn != null) {
                 System.out.println("Connect success");
             } else {
@@ -67,7 +67,7 @@ public class AccountDAO extends DBContext {
         String query = "  SELECT * FROM Account\n"
                 + "  where Email =? and [passwordHash] = ?";
         try {
-            cnn = new DBContext().connection;
+            cnn = new DBContext().conn;
             pstm = cnn.prepareStatement(query);
             pstm.setString(1, user);
             pstm.setString(2, password);
