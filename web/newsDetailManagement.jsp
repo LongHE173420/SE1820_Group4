@@ -5,37 +5,7 @@
 <html lang="en">
 
     <head>
-        
-         <title> Home </title>
 
-        <!-- animate.css-->  
-        <link href="assets/vendor/animate.css-master/animate.min.css" rel="stylesheet">
-        <!-- Load Screen -->
-        <link href="assets/vendor/loadscreen/css/spinkit.css" rel="stylesheet">
-        <!-- GOOGLE FONT -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-        <!-- Font Awesome 5 -->
-        <link href="assets/vendor/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
-        <!-- Fables Icons -->
-        <link href="assets/custom/css/fables-icons.css" rel="stylesheet"> 
-        <!-- Bootstrap CSS --> 
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap/css/bootstrap-4-navbar.css" rel="stylesheet">
-        <!-- portfolio filter gallery -->
-        <link href="assets/vendor/portfolio-filter-gallery/portfolio-filter-gallery.css" rel="stylesheet">
-        <!-- Video Background -->
-        <link href="assets/vendor/video-background/video-background.css" rel="stylesheet"> 
-        <!-- FANCY BOX -->
-        <link href="assets/vendor/fancybox-master/jquery.fancybox.min.css" rel="stylesheet"> 
-        <!-- RANGE SLIDER -->
-        <link href="assets/vendor/range-slider/range-slider.css" rel="stylesheet">
-        <!-- OWL CAROUSEL  --> 
-        <link href="assets/vendor/owlcarousel/owl.carousel.min.css" rel="stylesheet">
-        <link href="assets/vendor/owlcarousel/owl.theme.default.min.css" rel="stylesheet">
-        <!-- FABLES CUSTOM CSS FILE -->
-        <link href="assets/custom/css/custom.css" rel="stylesheet">
-        <!-- FABLES CUSTOM CSS RESPONSIVE FILE -->
-        <link href="assets/custom/css/custom-responsive.css" rel="stylesheet">
 
         <!-- Title Page-->
         <title>Management</title>
@@ -71,13 +41,13 @@
         %>
         <div class="page-wrapper">
             <!-- HEADER MOBILE-->
-                   <jsp:include page="header.jsp"/>
+           
             <!-- END MENU SIDEBAR-->
 
             <!-- PAGE CONTAINER-->
             <div class="page-container">
                 <!-- HEADER DESKTOP-->
-                
+
                 <!-- END HEADER DESKTOP-->
 
                 <!-- MAIN CONTENT-->
@@ -100,14 +70,14 @@
                                                     <label class="mr-2">Title</label>
                                                     <textarea name="title" cols="100" rows="2" class="form-control" value="${requestScope.title}"></textarea>
                                                 </div>
-                                               <div class="form-group d-flex">
-                                                        <label class="mr-2">Category</label>
-                                                        <select name="cateId">
-                                                            <c:forEach var="g" items="${requestScope.groups}">
-                                                                <option ${(g.id == sn.getGroupID())?'selected':''} value="${g.id}">${g.name}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
+                                                <div class="form-group d-flex">
+                                                    <label class="mr-2">Category</label>
+                                                    <select name="cateId">
+                                                        <c:forEach var="g" items="${requestScope.groups}">
+                                                            <option ${(g.id == sn.getGroupID())?'selected':''} value="${g.id}">${g.name}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="mr-2">Avatar news</label>                                                   
                                                     <textarea rows="20" name="image" id="thumbnail">${requestScope.imageFormat}</textarea>
@@ -128,7 +98,7 @@
                                             </c:if>
                                             <c:if test="${requestScope.selectNews != null}">
                                                 <c:set var="sn" value="${requestScope.selectNews}"/>
-                                                <c:if test="${sn.getGroupName() != 'Policy'}">
+                                                <c:set var="newsGroup" value="${requestScope.newsGroup}"/>
                                                     <h3 class="title-5 m-b-35">Update news detail</h3>                                                  
                                                     <div class="form-group">
                                                         <label class="mr-2">Last updated</label>
@@ -140,7 +110,7 @@
                                                     </div>         
                                                     <div class="form-group">
                                                         <label class="mr-2">Posted admin</label>
-                                                        <input type="text" name="admin" value="${sn.adminName}" class="form-control" readonly   >
+                                                        <input type="text" name="admin" value="${sn.accountName}" class="form-control" readonly   >
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="mr-2">Author</label>
@@ -153,6 +123,7 @@
                                                     <div class="form-group d-flex">
                                                         <label class="mr-2">Category</label>
                                                         <select name="cateId">
+                                                            
                                                             <c:forEach var="g" items="${requestScope.groups}">
                                                                 <option ${(g.id == sn.getGroupID())?'selected':''} value="${g.id}">${g.name}</option>
                                                             </c:forEach>
@@ -171,37 +142,8 @@
                                                         <label class="mr-2">Content:</label>
                                                         <textarea rows="20" name="content" class="tinymce">${sn.content}</textarea>
                                                     </div>
-                                                </c:if>
-                                                <c:if test="${sn.getGroupName() == 'Policy'}">
-                                                    <h3 class="title-5 m-b-35">Update policy detail</h3>                                                  
-                                                    <div class="form-group">
-                                                        <label class="mr-2">Last updated</label>
-                                                        <input type="text" name="updatedAt" class="form-control" value="${sn.updateAt}" readonly>
-                                                    </div>                                                            
-                                                    <div class="form-group">
-                                                        <label class="mr-2">Posted admin</label>
-                                                        <input type="text" name="account" value="${sn.accountName}" class="form-control" readonly>
-                                                    </div>                                                                                                                       
-                                                    <div class="form-group">
-                                                        <label class="mr-2">Title</label>
-                                                        <textarea name="title" cols="100" rows="2" class="form-control" readonly>${sn.title}</textarea>
-                                                    </div>
-                                                    <div class="form-group d-flex">
-                                                        <label class="mr-2">Category: ${sn.getGroupName()}</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="mr-2">Content:</label>
-                                                        <textarea rows="20" name="content" class="tinymce">${sn.content}</textarea>
-                                                    </div>
-                                                    <div>
-                                                        <input type="hidden" name="cateId" value="${sn.getGroupID()}"/>                                                           
-                                                        <input type="hidden" name="newsId" value="${sn.id}"/>
-                                                    </div>
-                                                </c:if>                                                
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="au-btn au-btn-icon au-btn--blue au-btn--small" type="submit" name="submit" value="1">
-                                                        Submit</button>        
-                                                </div>     
+                                                
+                                                    
                                             </c:if>                                
                                         </form>
                                     </div>
@@ -388,23 +330,10 @@
 
         <!-- Main JS-->
         <script src="js/main.js"></script>
-        
-      
 
-        <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-        <script src="assets/vendor/timeline/jquery.timelify.js"></script>
-        <script src="assets/vendor/loadscreen/js/ju-loading-screen.js"></script>
-        <script src="assets/vendor/jquery-circle-progress/circle-progress.min.js"></script>
-        <script src="assets/vendor/popper/popper.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap-4-navbar.js"></script>
-        <script src="assets/vendor/owlcarousel/owl.carousel.min.js"></script> 
-        <script src="assets/vendor/fancybox-master/jquery.fancybox.min.js"></script>
-        <script src="assets/vendor/video-background/jquery.mb.YTPlayer.js"></script>
-        <script src="assets/vendor/WOW-master/dist/wow.min.js"></script>
-        <script src="assets/custom/js/custom.js"></script>  
-        <script>
-        </script>
+
+
+       
 
     </body>
 

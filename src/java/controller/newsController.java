@@ -44,13 +44,6 @@ public class newsController extends HttpServlet {
         }else{
             sortedPhase = n.getContentById(Integer.parseInt(sorted)).getContent();
         }
-//        if (sorted.equals("2")) {
-//            sorted = "n.[view]";
-//        } else if (sorted.equals("1")) {
-//            sorted = "n.createdAt";
-//        } else {
-//            sorted = "-1";
-//        }
         if (grouped.equals("0")) {
             grouped = "-1";
         }

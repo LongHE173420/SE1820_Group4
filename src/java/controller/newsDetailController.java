@@ -43,6 +43,7 @@ public class newsDetailController extends HttpServlet {
         String nid = (String) s.getAttribute("updateNewsId");
         NewsDAO newsDAO = new NewsDAO();
         NewsGroupDAO newsGroupDAO = new NewsGroupDAO();
+        NewsGroup newsGroup=new NewsGroup();
 
         if (nid != null) {
             try {
@@ -57,7 +58,7 @@ public class newsDetailController extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
+        req.setAttribute("newsGroup", newsGroup);
         req.setAttribute("groups", newsGroupDAO.getListNewsGroupWithoutPolicy());
         req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
     }
