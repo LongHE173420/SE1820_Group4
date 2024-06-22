@@ -33,26 +33,30 @@ public class newsDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // go to update news page
         HttpSession s = req.getSession();
-        if (s.getAttribute("acc") == null) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
-        Account ch = (Account) s.getAttribute("acc");
-        if (!(ch.getRoleID()==1 || ch.getRoleID()==3)) {
-            req.getRequestDispatcher("403.jsp").forward(req, resp);
-        }
-        String nid = (String) s.getAttribute("updateNewsId");
-        NewsDAO n = new NewsDAO();
-        NewsGroupDAO ng = new NewsGroupDAO();
-        News news=new News();
-        if (nid == null) {
-            n = null;
-        } else {
-            news = n.getNewsById(Integer.parseInt(nid));
+    if (s.getAttribute("acc") == null) {
+        req.getRequestDispatcher("403.jsp").forward(req, resp);
+        return;
+    }
+    Account ch = (Account) s.getAttribute("acc");
+    if (!(ch.getRoleID()==1 || ch.getRoleID()==3)) {
+        req.getRequestDispatcher("403.jsp").forward(req, resp);
+        return;
+    }
+    String nid = (String) s.getAttribute("updateNewsId");
+    NewsDAO n = new NewsDAO();
+    NewsGroupDAO ng = new NewsGroupDAO();
+    News news = null;
+    if (nid != null) {
+        news = n.getNewsById(Integer.parseInt(nid));
+        if (news != null) {
             String imageFormat = "<p><img src=\"" + news.getImage() + "\" width=\"572\" height=\"322\" /></p>";
             req.setAttribute("imageFormat", imageFormat);
         }
         req.setAttribute("selectNews", news);
-        req.setAttribute("groups", ng.getListNewsGroup());
-        req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
+        s.removeAttribute("updateNewsId"); // Clear after use
+    }
+    req.setAttribute("groups", ng.getListNewsGroup());
+    req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
+
     }
 }

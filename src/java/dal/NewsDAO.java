@@ -513,7 +513,7 @@ public class NewsDAO {
                     + " News.link, News.createdAt, News.updatedAt, News.content from News \n"
                     + " join NewsGroup on News.groupId = NewsGroup.id\n"
                     + " where NewsGroup.name = ? \n"
-                    + " ORDER BY News.STT ASC";
+                    + " ORDER BY News.id ASC";
             pstm = cnn.prepareStatement(strSelect);
             pstm.setString(1, name);
             rs = pstm.executeQuery();

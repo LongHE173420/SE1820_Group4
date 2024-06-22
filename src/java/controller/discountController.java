@@ -83,7 +83,7 @@ public class discountController extends HttpServlet {
         DisCountDAO d = new DisCountDAO();
         NewsDAO n = new NewsDAO();
 
-        req.setAttribute("types", n.getListContentsByName("discountFilter"));
+        
         req.setAttribute("groupBy", "0");
         req.setAttribute("search", null);
         req.setAttribute("count", calThePage(5, -1, ""));

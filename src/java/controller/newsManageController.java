@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
 
 import Model.Account;
@@ -15,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import dal.*;
+
 /**
  *
  * @author Dell
@@ -26,7 +26,7 @@ public class newsManageController extends HttpServlet {
         HttpSession s = req.getSession();
         String act = req.getParameter("act");
         NewsDAO n = new NewsDAO();
-        News news= new News();
+        News news = new News();
         String nid = req.getParameter("newsId");
         News deletedNews = n.getNewsById(Integer.parseInt(nid));
         String gr = deletedNews.getGroupName();
@@ -35,29 +35,10 @@ public class newsManageController extends HttpServlet {
             //Delete news here by id   
             s.removeAttribute("updateNewsId");
 
-            if (gr.equalsIgnoreCase("Policy")) {
-                s.setAttribute("functionToast", "showToast('warning','You can not delete the policy!')");
-            } else {
-                if (news.getStt() == 1) {
-                    s.setAttribute("functionToast", "showToast('warning','You can not delete the news currently in slideshare!')");
-                } else {
-                    n.DeleteNews(nid);
-                    s.setAttribute("functionToast", "showToast('success','Delete news successfully!')");
-                }
-            }
-        } else if (act.equals("isSlide")) {
-            if (gr.equalsIgnoreCase("Policy")) {
-                s.setAttribute("functionToast", "showToast('warning','You can not show policy on slideshare!')");
-            } else {
-                n.isSlideBanner(nid);
-                s.setAttribute("functionToast", "showToast('success','Edit slideshare successfully!')");
-            }
-        } else {
-            if (news.getLink() == null) {
-                n.notSlideBanner(nid);
-                s.setAttribute("functionToast", "showToast('success','Edit slideshare successfully!')");
-            }
-        }
+            n.DeleteNews(nid);
+            s.setAttribute("functionToast", "showToast('success','Delete news successfully!')");
+
+        } 
         resp.sendRedirect("newsManage");
     }
 
@@ -68,7 +49,7 @@ public class newsManageController extends HttpServlet {
             req.getRequestDispatcher("403.jsp").forward(req, resp);
         }
         Account ch = (Account) s.getAttribute("acc");
-        if (!(ch.getRoleID()==1 || ch.getRoleID()==2)) {
+        if (!(ch.getRoleID() == 1 || ch.getRoleID() == 2)) {
             req.getRequestDispatcher("403.jsp").forward(req, resp);
         }
         NewsDAO n = new NewsDAO();

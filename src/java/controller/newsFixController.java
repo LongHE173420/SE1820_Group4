@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
 
 import Model.Account;
@@ -18,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import dal.*;
+
 /**
  *
  * @author Dell
@@ -26,46 +26,39 @@ public class newsFixController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    HttpSession s = req.getSession();
-    String submitType = req.getParameter("submit");
+        HttpSession s = req.getSession();
+        String submitType = req.getParameter("submit");
 
-    String author = req.getParameter("author");
-    String cateId = req.getParameter("cateId");
-    String title = req.getParameter("title");
-    String heading = req.getParameter("heading");
-    String content = req.getParameter("content");
-    String image = req.getParameter("image");
+        String author = req.getParameter("author");
+        String cateId = req.getParameter("cateId");
+        String title = req.getParameter("title");
+        String heading = req.getParameter("heading");
+        String content = req.getParameter("content");
+        String image = req.getParameter("image");
 
-    // Trim the inputs to remove any leading or trailing spaces
-    author = (author != null) ? author.trim() : "";
-    title = (title != null) ? title.trim() : "";
-    heading = (heading != null) ? heading.trim() : "";
-    content = (content != null) ? content.trim() : "";
+        // Trim the inputs to remove any leading or trailing spaces
+        author = (author != null) ? author.trim() : "";
+        title = (title != null) ? title.trim() : "";
+        heading = (heading != null) ? heading.trim() : "";
+        content = (content != null) ? content.trim() : "";
 
-    NewsDAO n = new NewsDAO();
-    NewsGroupDAO ng = new NewsGroupDAO();
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-    String formatImage = extractImageSrc(image);
-    if (formatImage == null) {
-        formatImage = "";
-    }
+        NewsDAO n = new NewsDAO();
+        NewsGroupDAO ng = new NewsGroupDAO();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String formatImage = extractImageSrc(image);
+        if (formatImage == null) {
+            formatImage = "";
+        }
 
-    try {
         if (submitType.equals("1")) {
             String newsId = req.getParameter("newsId");
-            if (newsId == null || cateId == null) {
-                throw new IllegalArgumentException("News ID or Category ID is missing.");
-            }
-
             String cateName = ng.getNewsGroupById(Integer.parseInt(cateId)).getName();
             String updateAt = dtf.format(now);
             if (!heading.isEmpty() && !author.isEmpty() && !title.isEmpty() && !content.isEmpty()) {
-                if (cateName.equalsIgnoreCase("Policy")) {
-                    n.updatePolicy(title, updateAt, content, Integer.parseInt(newsId));
-                } else {
-                    n.updateNews(Integer.parseInt(cateId), title, formatImage, heading, author, updateAt, content, Integer.parseInt(newsId));
-                }
+
+                n.updateNews(Integer.parseInt(cateId), title, formatImage, heading, author, updateAt, content, Integer.parseInt(newsId));
+
                 s.setAttribute("functionToast", "showToast('success','Update news successfully!')");
             } else {
                 s.setAttribute("functionToast", "showToast('info','Some input(s) are blank!')");
@@ -77,9 +70,6 @@ public class newsFixController extends HttpServlet {
                 return;
             }
         } else {
-            if (cateId == null) {
-                throw new IllegalArgumentException("Category ID is missing.");
-            }
 
             if (!heading.isEmpty() && !author.isEmpty() && !title.isEmpty() && !content.isEmpty()) {
                 String createAt = dtf.format(now);
@@ -102,14 +92,8 @@ public class newsFixController extends HttpServlet {
             }
         }
         resp.sendRedirect("news");
-    } catch (NumberFormatException e) {
-        s.setAttribute("functionToast", "showToast('error','Invalid input: " + e.getMessage() + "')");
-        req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
-    } catch (IllegalArgumentException e) {
-        s.setAttribute("functionToast", "showToast('error','" + e.getMessage() + "')");
-        req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
+
     }
-}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

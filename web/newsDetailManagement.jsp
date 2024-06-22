@@ -212,12 +212,12 @@
                 selector: '.tinymce',
                 plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
                 toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-                images_upload_url: '/SE1706_SWP391_Group6_admin/image',
+                images_upload_url: '/SE1820_Group4/image',
                 images_upload_handler: function (blobInfo, success, failure) {
                     var xhr, formData;
                     xhr = new XMLHttpRequest();
                     xhr.withCredentials = false;
-                    xhr.open('POST', '/SE1706_SWP391_Group6_admin/image');
+                    xhr.open('POST', '/SE1820_Group4/image');
                     xhr.onload = function () {
                         var json;
 
@@ -245,12 +245,12 @@
                 plugins: 'image code',
                 toolbar: 'image code',
                 menubar: false,
-                images_upload_url: '/SE1706_SWP391_Group6_admin/image',
+                images_upload_url: '/SE1820_Group4/image',
                 images_upload_handler: function (blobInfo, success, failure) {
                     var xhr, formData;
                     xhr = new XMLHttpRequest();
                     xhr.withCredentials = false;
-                    xhr.open('POST', '/SE1706_SWP391_Group6_admin/image');
+                    xhr.open('POST', '/SE1820_Group4/image');
                     xhr.onload = function () {
                         var json;
 
