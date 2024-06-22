@@ -4,15 +4,7 @@
  */
 package Model;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.sql.*;
-import dal.DBContext;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *

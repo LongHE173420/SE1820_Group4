@@ -51,8 +51,8 @@ public class newsDetailController extends HttpServlet {
             String imageFormat = "<p><img src=\"" + news.getImage() + "\" width=\"572\" height=\"322\" /></p>";
             req.setAttribute("imageFormat", imageFormat);
         }
-        req.setAttribute("selectNews", n);
-        req.setAttribute("groups", ng.getListNewsGroupWithoutPolicy());
+        req.setAttribute("selectNews", news);
+        req.setAttribute("groups", ng.getListNewsGroup());
         req.getRequestDispatcher("newsDetailManagement.jsp").forward(req, resp);
     }
 }

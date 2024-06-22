@@ -3,9 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-import dal.DBContext;
-import java.sql.*;
-import java.util.ArrayList;
+
 import java.util.List;
 /**
  *

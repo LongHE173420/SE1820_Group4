@@ -74,7 +74,7 @@
                                                     <label class="mr-2">Category</label>
                                                     <select name="cateId">
                                                         <c:forEach var="g" items="${requestScope.groups}">
-                                                            <option ${(g.id == sn.getGroupID())?'selected':''} value="${g.id}">${g.name}</option>
+                                                            <option ${(g.id == requestScope.cateId)?'selected':''} value="${g.id}">${g.name}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -124,9 +124,9 @@
                                                         <label class="mr-2">Category</label>
                                                         <select name="cateId">
                                                             
-                                                            <c:forEach var="g" items="${requestScope.news}">
-                                                                <c:set var="newsGroup" value="${requestScope.newsGroup}"/>
-                                                                <option ${(g.id == newsGroup.getGroupID())?'selected':''} value="${g.id}">${newsGroup.name}</option>
+                                                            <c:forEach var="g" items="${requestScope.groups}">
+                                                                
+                                                                <option ${(g.id == sn.getGroupId())?'selected':''} value="${g.id}">${g.name}</option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
