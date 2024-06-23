@@ -23,20 +23,14 @@
         <link rel="stylesheet" href="css1/owl.carousel.css">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="css1/responsive.css">
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Fables">
+        <meta name="author" content="Enterprise Development">
+        <link rel="shortcut icon" href="assets/custom/images/shortcut.png">
 
-        <!--        
-                <link rel="stylesheet" href="css/styles.css">
-                <link rel="stylesheet" href="css/toastr.min.css">
-                <link rel="stylesheet" href="css/popup.css">
-                <link rel="stylesheet" href="css/myCss.css">
-        -->
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-         <title> Home </title>
+        <title> Home </title>
 
         <!-- animate.css-->  
         <link href="assets/vendor/animate.css-master/animate.min.css" rel="stylesheet">
@@ -66,6 +60,19 @@
         <link href="assets/custom/css/custom.css" rel="stylesheet">
         <!-- FABLES CUSTOM CSS RESPONSIVE FILE -->
         <link href="assets/custom/css/custom-responsive.css" rel="stylesheet">
+
+        <!--        
+                <link rel="stylesheet" href="css/styles.css">
+                <link rel="stylesheet" href="css/toastr.min.css">
+                <link rel="stylesheet" href="css/popup.css">
+                <link rel="stylesheet" href="css/myCss.css">
+        -->
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body>
 
@@ -131,10 +138,10 @@
                                 <c:forEach var="g" items="${requestScope.groups}">
                                     <c:set var="sg" value="${requestScope.selectGroup}"/>
                                     <c:if test="${sg.getName()==g.getName()}">
-                                        <li class="active"><a href="news?groupName=${g.getName().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}">${g.getName()}</a></li>
+                                        <li class="active"><a href="newsUser?groupName=${g.getName().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}">${g.getName()}</a></li>
                                         </c:if>
                                         <c:if test="${sg.getName()!=g.getName()}">
-                                        <li><a href="news?groupName=${g.getName().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}">${g.getName()}</a></li>
+                                        <li><a href="newsUser?groupName=${g.getName().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}">${g.getName()}</a></li>
                                         </c:if>
                                     </c:forEach>
                             </ul>
@@ -161,7 +168,7 @@
                                     <div class="row" style="margin-bottom: 24px;">
                                         <div class="col-xs-6">
                                             <div class="news_image">
-                                                <a style="display: inline-block" href="newsDetail?title=${ns.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}" title="${ns.getTitle()}" onclick="sendRequest(${ns.getId()})"> 
+                                                <a style="display: inline-block" href="newsUserDetail?title=${ns.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}" title="${ns.getTitle()}" onclick="sendRequest(${ns.getId()})"> 
                                                     <img style="width: 100%; height: 100%; object-fit: cover;"
                                                          src="${ns.getImage()}"
                                                          onerror="this.onerror=null; 
@@ -173,7 +180,7 @@
                                             <div style="height: 100%;">
                                                 <div>
                                                     <h3 class="title-news">
-                                                        <a href="newsDetail?title=${ns.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}"  title="${ns.title}"  onclick="sendRequest(${ns.getId()})">${ns.getTitle()}</a>                                                        
+                                                        <a href="newsUserDetail?title=${ns.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}"  title="${ns.title}"  onclick="sendRequest(${ns.getId()})">${ns.getTitle()}</a>                                                        
                                                         <!--                                                        <form id="myForm" method="post" action="newsDetail">
                                                                                                                     <input type="hidden" name="nid" id="dataField" value="${ns.getId()}">
                                                                                                                     <button type="submit">
@@ -196,7 +203,7 @@
                                 <h2 class="sidebar-title">Promotion </h2>
                                 <c:forEach end="1" var="p" items="${requestScope.promotions}">
                                     <div class="thubmnail-recent">                                
-                                        <h2><a href="newsDetail?title=${p.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}" onclick="sendRequest(${p.getId()})"><img src="${p.getImage()}" alt=""></a></h2>
+                                        <h2><a href="newsUserDetail?title=${p.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}" onclick="sendRequest(${p.getId()})"><img src="${p.getImage()}" alt=""></a></h2>
                                     </div>
                                 </c:forEach>
                             </c:if>
@@ -206,7 +213,7 @@
                             <h2 class="sidebar-title">Latest news</h2>
                             <ul>
                                 <c:forEach end='4' var="ns" items="${requestScope.defendNews}">
-                                    <li><a href="newsDetail?title=${ns.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}" onclick="sendRequest(${ns.getId()})">${ns.getTitle()}</a></li>
+                                    <li><a href="newsUserDetail?title=${ns.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}" onclick="sendRequest(${ns.getId()})">${ns.getTitle()}</a></li>
                                     </c:forEach>
                             </ul>
                         </div>
@@ -219,17 +226,17 @@
                                     <ul class="pagination">
                                         <c:if test="${requestScope.page > 1}">
                                             <li>
-                                                <a href="news?groupName=${requestScope.pageGroup}&page=${requestScope.page - 1}" aria-label="Previous">
+                                                <a href="newsUser?groupName=${requestScope.pageGroup}&page=${requestScope.page - 1}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                 </a>
                                             </li>
                                         </c:if>                                        
                                         <c:forEach begin="1" end="${requestScope.count}" var="i">
-                                            <li class="page-item ${requestScope.page == i ? 'active' : ''}"><a href="news?groupName=${requestScope.pageGroup}&page=${i}">${i}</a></li>                                         
+                                            <li class="page-item ${requestScope.page == i ? 'active' : ''}"><a href="newsUser?groupName=${requestScope.pageGroup}&page=${i}">${i}</a></li>                                         
                                             </c:forEach>                                            
                                             <c:if test="${requestScope.page < requestScope.count}">
                                             <li>
-                                                <a href="news?groupName=${requestScope.pageGroup}&page=${requestScope.page + 1}" aria-label="Next">
+                                                <a href="newsUser?groupName=${requestScope.pageGroup}&page=${requestScope.page + 1}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                 </a>
                                             </li>
@@ -247,7 +254,15 @@
         <div id ="footer-area">
             <%@include file="footer.jsp"%>
         </div>
-       
+        <script type="text/javascript">
+            function sendRequest(value) {
+                var url = "news";
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", url, true);
+                xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhttp.send("viewNewsId=" + value);
+            }
+        </script>
         
         <!--Start of Tawk.to Script-->
         <script type="text/javascript">
@@ -279,7 +294,9 @@
         <!-- Main Script -->
         <script src="js/main.js"></script>
         
-         <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        
+
+        <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
         <script src="assets/vendor/timeline/jquery.timelify.js"></script>
         <script src="assets/vendor/loadscreen/js/ju-loading-screen.js"></script>
         <script src="assets/vendor/jquery-circle-progress/circle-progress.min.js"></script>

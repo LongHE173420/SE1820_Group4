@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
 
 import Model.News;
@@ -18,14 +17,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 import dal.NewsDAO;
+
 /**
  *
  * @author Dell
  */
 public class newsUserDetailController extends HttpServlet {
-   
-   @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nid = req.getParameter("nid");
         req.getRequestDispatcher("detailNews").forward(req, resp);
     }
@@ -33,30 +32,28 @@ public class newsUserDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("title");
-        NewsDAO newsDao=new NewsDAO();
+        NewsDAO newsDao = new NewsDAO();
         
-        List<News> news1 = newsDao.getListNews();
-      
-
+        List<News> newsList = newsDao.getListNews();
         int selectId = -1;
 
-        for (News aNew : news1) {
+        for (News aNew : newsList) {
             if (title.equalsIgnoreCase(toSlug(aNew.getTitle()))) {
                 selectId = aNew.getId();
+                break;
             }
         }
-     
         
-        news1 = (List<News>) newsDao.getNewsById(selectId);
-        News thatNew = newsDao.getNewsById(selectId);
-        CategoryDAO c = new CategoryDAO();
-        req.setAttribute("cList", c.getListCategory());
+        News selectedNews = newsDao.getNewsById(selectId);
+        CategoryDAO categoryDao = new CategoryDAO();
         
-        req.setAttribute("news", news1);
-        req.setAttribute("selectNew", thatNew);
+        req.setAttribute("cList", categoryDao.getListCategory());
+        req.setAttribute("news", newsList); // This can be used to show related news
+        req.setAttribute("selectNew", selectedNews);
     
         req.getRequestDispatcher("newsUserDetail.jsp").forward(req, resp);
     }
+
     private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 

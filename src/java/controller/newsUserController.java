@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
 
 import Model.News;
@@ -20,31 +19,31 @@ import java.util.regex.Pattern;
 import dal.NewsDAO;
 import dal.NewsGroupDAO;
 import dal.CategoryDAO;
+
 /**
  *
  * @author Dell
  */
 public class newsUserController extends HttpServlet {
-   
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       
+
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String page = req.getParameter("page");
-        String groupName = req.getParameter("groupName");   
+        String groupName = req.getParameter("groupName");
         if (page == null) {
             page = "1";
         }
         NewsGroupDAO ng1 = new NewsGroupDAO();
         List<NewsGroup> groups = ng1.getListNewsGroup();
         int gid = -1;
-        NewsDAO n = new NewsDAO();        
+        NewsDAO n = new NewsDAO();
         CategoryDAO c = new CategoryDAO();
         req.setAttribute("cList", c.getListCategory());
-       
-       
+
         if (groupName == null || groupName.isEmpty()) {
             req.setAttribute("news", n.getListByPages(Integer.parseInt(page)));
             req.setAttribute("groups", groups);
@@ -55,18 +54,22 @@ public class newsUserController extends HttpServlet {
                     gid = group.getId();
                 }
             }
-            if (gid == -1) {                
+            if (gid == -1) {
                 req.setAttribute("news", n.getListByPages(Integer.parseInt(page)));
-            } else {                
+            } else {
                 req.setAttribute("news", n.getListByPagesAndGroup(Integer.parseInt(page), gid));
             }
             req.setAttribute("cList", c.getListCategory());
             req.setAttribute("groups", groups);
             req.setAttribute("count", calThePage(5, gid));
-            req.setAttribute("selectGroup", ng1.getNewsGroupById(gid));
-            String pageGroup = ng1.getNewsGroupById(gid).getName();
-            if (pageGroup != null) {
-                req.setAttribute("pageGroup", toSlug(ng1.getNewsGroupById(gid).getName()));
+
+            NewsGroup selectedGroup = ng1.getNewsGroupById(gid);
+            if (selectedGroup != null) {
+                req.setAttribute("selectGroup", selectedGroup);
+                req.setAttribute("pageGroup", toSlug(selectedGroup.getName()));
+            } else {
+                req.setAttribute("selectGroup", null);
+                req.setAttribute("pageGroup", null);
             }
         }
         req.setAttribute("page", page);
@@ -85,7 +88,7 @@ public class newsUserController extends HttpServlet {
 
     public static int calThePage(int sizePage, int gid) {
         NewsDAO n = new NewsDAO();
-        int pages = 0;        
+        int pages = 0;
         int countNews = n.getListNews().size();
 
         if (gid != -1) {
