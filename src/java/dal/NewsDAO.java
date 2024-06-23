@@ -73,6 +73,7 @@ public class NewsDAO {
         }
         return data;
     }
+
     public static void main(String[] args) {
         NewsDAO dao = new NewsDAO();
         List<News> list = dao.getNewsByGid(1);
@@ -80,7 +81,7 @@ public class NewsDAO {
             System.out.println(news);
         }
     }
-   
+
     public News getNewsById(int nId) {
         try {
             connect();
@@ -231,7 +232,6 @@ public class NewsDAO {
             System.out.println("addNews: " + e.getMessage());
         }
     }
-   
 
     public void updateNews(int gid, String title, String image, String heading, String author, String updatedAt, String content, int id) {
         try {
@@ -261,46 +261,45 @@ public class NewsDAO {
         }
     }
 
-    public void updatePolicy(String title, String updatedAt, String content, int id) {
-        try {
-            connect();
-            String strUpdate = "UPDATE [dbo].[News]\n"
-                    + "   SET [title] = ?\n"
-                    + "      ,[updatedAt] = ?\n"
-                    + "      ,[content] = ?\n"
-                    + " WHERE id = ?";
-            pstm = cnn.prepareStatement(strUpdate);
-            pstm.setString(1, title);
-            pstm.setString(2, updatedAt);
-            pstm.setString(3, content);
-            pstm.setInt(4, id);
-            pstm.execute();
-            cnn.close();
-
-        } catch (Exception e) {
-            System.out.println("updatePolicy: " + e.getMessage());
-        }
-    }
-
-    public void updateFooterContent(String title, String content, String updatedAt, int id) {
-        try {
-            String strUpdate = "UPDATE [dbo].[News]\n"
-                    + "   SET [title] = ?\n"
-                    + "      ,[updatedAt] = ?\n"
-                    + "      ,[content] = ?\n"
-                    + " WHERE id = ?";
-            pstm = cnn.prepareStatement(strUpdate);
-            pstm.setString(1, title);
-            pstm.setString(2, updatedAt);
-            pstm.setString(3, content);
-            pstm.setInt(4, id);
-            pstm.execute();
-            cnn.close();
-        } catch (Exception e) {
-            System.out.println("updateFooterContent: " + e.getMessage());
-        }
-    }
-
+//    public void updatePolicy(String title, String updatedAt, String content, int id) {
+//        try {
+//            connect();
+//            String strUpdate = "UPDATE [dbo].[News]\n"
+//                    + "   SET [title] = ?\n"
+//                    + "      ,[updatedAt] = ?\n"
+//                    + "      ,[content] = ?\n"
+//                    + " WHERE id = ?";
+//            pstm = cnn.prepareStatement(strUpdate);
+//            pstm.setString(1, title);
+//            pstm.setString(2, updatedAt);
+//            pstm.setString(3, content);
+//            pstm.setInt(4, id);
+//            pstm.execute();
+//            cnn.close();
+//
+//        } catch (Exception e) {
+//            System.out.println("updatePolicy: " + e.getMessage());
+//        }
+//    }
+//
+//    public void updateFooterContent(String title, String content, String updatedAt, int id) {
+//        try {
+//            String strUpdate = "UPDATE [dbo].[News]\n"
+//                    + "   SET [title] = ?\n"
+//                    + "      ,[updatedAt] = ?\n"
+//                    + "      ,[content] = ?\n"
+//                    + " WHERE id = ?";
+//            pstm = cnn.prepareStatement(strUpdate);
+//            pstm.setString(1, title);
+//            pstm.setString(2, updatedAt);
+//            pstm.setString(3, content);
+//            pstm.setInt(4, id);
+//            pstm.execute();
+//            cnn.close();
+//        } catch (Exception e) {
+//            System.out.println("updateFooterContent: " + e.getMessage());
+//        }
+//    }
     public void DeleteContents(String sid, String nid) {
         connect();
         int x = 1;
@@ -354,32 +353,6 @@ public class NewsDAO {
             cnn.close();
         } catch (Exception e) {
             System.out.println("DeleteContent: " + e.getMessage());
-        }
-    }
-
-    public void isSlideBanner(String id) {
-        try {
-            connect();
-            String strSelect = "update [News] set [STT] = 1 where id= ?";
-            pstm = cnn.prepareStatement(strSelect);
-            pstm.setString(1, id);
-            pstm.execute();
-            cnn.close();
-        } catch (Exception e) {
-            System.out.println("isSlideBanner: " + e.getMessage());
-        }
-    }
-
-    public void notSlideBanner(String id) {
-        try {
-            connect();
-            String strSelect = "update [News] set [STT] = NULL where id= ?";
-            pstm = cnn.prepareStatement(strSelect);
-            pstm.setString(1, id);
-            pstm.execute();
-            cnn.close();
-        } catch (Exception e) {
-            System.out.println("notSlideBanner: " + e.getMessage());
         }
     }
 
@@ -645,34 +618,74 @@ public class NewsDAO {
         }
     }
 
-    public News getContentsFootlinkContent() {
+    public List<News> getListByPages(int index) {
+        List<News> data = new ArrayList<News>();
         try {
             connect();
-            String strSelect = " select News.id, News.adminId, News.groupId, News.title, News.STT, News.[image],\n"
-                    + "News.link, News.createdAt, News.updatedAt, News.content from News join NewsGroup on\n"
-                    + "News.groupId = NewsGroup.id where NewsGroup.name = 'footerContent' ORDER BY News.STT ASC";
+            String strSelect = "select n.id, n.accountID, n.groupId, n.title, n.heading, n.author, n.[image], n.[view], n.createdAt, n.updatedAt,\n"
+                    + "n.content, ng.[name], (a.firstName + ' ' + a.lastName) as adminName from news n join [Account] a on a.AccountID = n.accountID\n"
+                    + "join NewsGroup ng on n.groupId = ng.id where ng.[type] = 'news'  order by n.createdAt desc\n"
+                    + "Offset ? rows\n"
+                    + "fetch first 5 rows only";
             pstm = cnn.prepareStatement(strSelect);
+            pstm.setInt(1, (index - 1) * 5);
             rs = pstm.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 int id = rs.getInt(1);
                 int adminId = rs.getInt(2);
-                int groupID = rs.getInt(3);
+                int groupId = rs.getInt(3);
                 String title = rs.getString(4);
-                int stt = rs.getInt(5);
-                String image = rs.getString(6);
-                String link = rs.getString(7);
-                String createAt = convertDateTimeFormat(rs.getString(8));
-                String updatedAt = convertDateTimeFormat(rs.getString(9));
-                String content = rs.getString(10);
-                return new News(id, adminId, groupID, title, image, stt, link, createAt, updatedAt, content);
+                String heading = rs.getString(5);
+                String author = rs.getString(6);
+                String image = rs.getString(7);
+                int view = rs.getInt(8);
+                String createAt = convertDateTimeFormat(rs.getString(9));
+                String updatedAt = convertDateTimeFormat(rs.getString(10));
+                String content = rs.getString(11);
+                String groupName = rs.getString(12);
+                String accountName = rs.getString(13);
+                data.add(new News(id, adminId, groupId, title, heading, author, image, view, createAt, updatedAt, content, groupName, accountName));
             }
             cnn.close();
-        } catch (Exception e) {
-            System.out.println("getContentsFootlinkContent: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("getListByPages:" + e.getMessage());
         }
-        return null;
+        return data;
     }
-//     public String toString() {
-//        return "News{" + "id=" + id + ", title=" + title + ", stt=" + stt + ", link=" + link + ", content=" + content + '}';
-//    }
+
+    public List<News> getListByPagesAndGroup(int index, int gid) {
+        List<News> data = new ArrayList<News>();
+        try {
+            connect();
+            String strSelect = "select n.id, n.accountID, n.groupId, n.title, n.heading, n.author, n.[image], n.[view], n.createdAt, n.updatedAt,\n"
+                    + "n.content, ng.[name], (a.firstName + ' ' + a.lastName) as adminName from news n join [Account] a on a.AccountID = n.accountID\n"
+                    + "join NewsGroup ng on n.groupId = ng.id where ng.id = ? order by n.createdAt desc\n"
+                    + "Offset ? rows\n"
+                    + "fetch first 5 rows only";
+            pstm = cnn.prepareStatement(strSelect);
+            pstm.setInt(1, gid);
+            pstm.setInt(2, (index - 1) * 5);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                int accountId = rs.getInt(2);
+                int groupId = rs.getInt(3);
+                String title = rs.getString(4);
+                String heading = rs.getString(5);
+                String author = rs.getString(6);
+                String image = rs.getString(7);
+                int view = rs.getInt(8);
+                String createAt = convertDateTimeFormat(rs.getString(9));
+                String updatedAt = convertDateTimeFormat(rs.getString(10));
+                String content = rs.getString(11);
+                String groupName = rs.getString(12);
+                String accountName = rs.getString(13);
+                data.add(new News(id, accountId, groupId, title, heading, author, image, view, createAt, updatedAt, content, groupName, accountName));
+            }
+            cnn.close();
+        } catch (SQLException e) {
+            System.out.println("getListByPagesAndGroup:" + e.getMessage());
+        }
+        return data;
+    }
 }

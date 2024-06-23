@@ -40,6 +40,14 @@
         <servlet-name>imageController</servlet-name>
         <servlet-class>controller.imageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>newsUserController</servlet-name>
+        <servlet-class>controller.newsUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>newsUserDetailController</servlet-name>
+        <servlet-class>controller.newsUserDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomePage</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>imageController</servlet-name>
         <url-pattern>/image</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>newsUserController</servlet-name>
+        <url-pattern>/newsUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>newsUserDetailController</servlet-name>
+        <url-pattern>/newsUserDetail</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
