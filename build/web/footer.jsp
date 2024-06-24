@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Start Footer  -->
 <div class="fables-footer-image fables-after-overlay white-color py-4 py-lg-5 bg-rules">
     <div class="container">
@@ -32,7 +33,12 @@
                 <ul class="nav fables-footer-links">
                     <li><a href="about1.html">About Us</a></li>
                     <li><a href="contactus.html">Contact Us</a></li> 
-                    <li><a href="news">News</a></li> 
+                    <c:if test="${sessionScope.acc.roleID == 1 || sessionScope.acc.roleID == 3}">
+                        <li><a href="news">News</a></li> 
+                    </c:if> 
+                    <c:if test="${sessionScope.acc == null || sessionScope.acc.roleID == 2}">
+                        <li><a href="newsUser">News</a></li> 
+                    </c:if> 
                 </ul>
             </div>
         </div> 

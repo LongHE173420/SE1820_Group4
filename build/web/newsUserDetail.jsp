@@ -81,29 +81,7 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div> 
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
 
-                            <c:forEach items="${sessionScope.navbar}" var="nav">
-                                <c:if test="${nav.title eq pr}">
-                                    <li class="dropdown ${nav.title eq ac ? "active" : "" }">
-                                        <a class="dropdown-toggle" data-toggle="dropdown">${nav.title}</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="${nav.link}">All Products</a></li>
-                                                <c:forEach items="${cList}" var="item">
-                                                <li><a href="shop?categoryid=${item.getCategoryid()}" class="" data-id="76">${item.getCname()}</a></li>
-                                                </c:forEach>
-                                        </ul>
-                                    </li>
-                                </c:if>
-
-                                <c:if test="${nav.title ne pr}">
-                                    <li class="${nav.title eq ac ? "active" : "" }"><a href="${nav.link}"><i ></i>${nav.title}</a></li>
-                                        </c:if>
-                                    </c:forEach>
-
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -133,102 +111,78 @@
                                 <p style="color: gray">Postdate: ${n.getCreateAt()}</p>
                                 <span></span>      
                                 <article>
+                                    <img src="${n.getImage()}" alt="${n.getTitle()}"
+                                                             onerror="this.onerror=null; 
+                                                             this.src='https://lh4.ggpht.com/-PtwFBckvv78/V3aBB39xD9I/AAAAAAAAHFA/EXKKalIB8IkvyJjUzGrDVQCzLMs5Alx9QCLcB/s1600/anh-blogspot-khong-hien-thi.png';">
                                     <p class="Normal" style="text-align:justify;">${n.getContent()}</p>
-                                    <p class="Normal" style="text-align:right;"> <strong>${n.getAuthor()}</strong></p>
+                                    <p class="Normal" style="text-align:right;">Author: <strong>${n.getAuthor()}</strong></p>
                                 </article>
-                                <!--                                <div class="comment_side">
-                                                                    <h2>Comment</h2>
-                                                                    <form>
-                                                                        <textarea cols="70" rows="3" placeholder="Comment here" style="float:left" required></textarea>
-                                                                        <input type="submit" name="Send"  style="margin-left: 20px">                                              
-                                                                    </form>                                   
-                                                                </div>-->
+
+
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-sidebar"> 
-                            <c:if test="${requestScope.selectNew.getGroupName() != 'Sales & Promotion'}">
-                                <h2 class="sidebar-title">Promotion </h2>
-                                <c:forEach var="p" items="${requestScope.promotions}">
-                                    <div class="thubmnail-recent">                                
-                                        <h2><a href="newsUserDetail?title=${p.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}" onclick="sendRequest(${p.getId()})"><img src="${p.getImage()}" alt=""></a></h2>
-                                    </div>
-                                </c:forEach>
-                            </c:if>
-                        </div>
-                        <div class="single-sidebar">
-                            <h2 class="sidebar-title">Latest news</h2>
-                            <ul>
-                                <c:forEach end="4" var="ns" items="${requestScope.news}">
-                                    <li><a href="newsUserDetail?title=${ns.getTitle().toLowerCase().replaceAll(' ', '-').replaceAll('[^a-z0-9-]', '')}" onclick="sendRequest(${ns.getId()})">${ns.getTitle()}</a></li>
-                                    </c:forEach>
-                            </ul>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id ="footer-area">
-            <%@include file="footer.jsp"%>
-        </div>
-        
-        <script type="text/javascript">
-            function sendRequest(value) {
-                var url = "news";
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", url, true);
-                xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhttp.send("viewNewsId=" + value);
-            }
-        </script>
-        
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-            (function () {
-                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-                s1.async = true;
-                s1.src = 'https://embed.tawk.to/6496f437cc26a871b0247198/1h3mqju94';
-                s1.charset = 'UTF-8';
-                s1.setAttribute('crossorigin', '*');
-                s0.parentNode.insertBefore(s1, s0);
-            })();
-        </script>
-        <!--End of Tawk.to Script-->
-        
-        <!-- Latest jQuery form server -->
-        <script src="https://code.jquery.com/jquery.min.js"></script>
 
-        <!-- Bootstrap JS form CDN -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-        <!-- jQuery sticky menu -->
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
+            <script type="text/javascript">
+                function sendRequest(value) {
+                    var url = "newsUser";
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("POST", url, true);
+                    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhttp.send("viewNewsId=" + value);
+                }
+            </script>
 
-        <!-- jQuery easing -->
-        <script src="js/jquery.easing.1.3.min.js"></script>
+            <!--Start of Tawk.to Script-->
+            <script type="text/javascript">
+                var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+                (function () {
+                    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                    s1.async = true;
+                    s1.src = 'https://embed.tawk.to/6496f437cc26a871b0247198/1h3mqju94';
+                    s1.charset = 'UTF-8';
+                    s1.setAttribute('crossorigin', '*');
+                    s0.parentNode.insertBefore(s1, s0);
+                })();
+            </script>
+            <!--End of Tawk.to Script-->
 
-        <!-- Main Script -->
-        <script src="js/main.js"></script>
-        
-         <jsp:include page="footer.jsp"/>
+            <!-- Latest jQuery form server -->
+            <script src="https://code.jquery.com/jquery.min.js"></script>
 
-        <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-        <script src="assets/vendor/timeline/jquery.timelify.js"></script>
-        <script src="assets/vendor/loadscreen/js/ju-loading-screen.js"></script>
-        <script src="assets/vendor/jquery-circle-progress/circle-progress.min.js"></script>
-        <script src="assets/vendor/popper/popper.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap-4-navbar.js"></script>
-        <script src="assets/vendor/owlcarousel/owl.carousel.min.js"></script> 
-        <script src="assets/vendor/fancybox-master/jquery.fancybox.min.js"></script>
-        <script src="assets/vendor/video-background/jquery.mb.YTPlayer.js"></script>
-        <script src="assets/vendor/WOW-master/dist/wow.min.js"></script>
-        <script src="assets/custom/js/custom.js"></script>  
-        <script>
-        </script>
+            <!-- Bootstrap JS form CDN -->
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+            <!-- jQuery sticky menu -->
+            <script src="js/owl.carousel.min.js"></script>
+            <script src="js/jquery.sticky.js"></script>
+
+            <!-- jQuery easing -->
+            <script src="js/jquery.easing.1.3.min.js"></script>
+
+            <!-- Main Script -->
+            <script src="js/main.js"></script>
+
+            <jsp:include page="footer.jsp"/>
+
+            <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+            <script src="assets/vendor/timeline/jquery.timelify.js"></script>
+            <script src="assets/vendor/loadscreen/js/ju-loading-screen.js"></script>
+            <script src="assets/vendor/jquery-circle-progress/circle-progress.min.js"></script>
+            <script src="assets/vendor/popper/popper.min.js"></script>
+            <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <script src="assets/vendor/bootstrap/js/bootstrap-4-navbar.js"></script>
+            <script src="assets/vendor/owlcarousel/owl.carousel.min.js"></script> 
+            <script src="assets/vendor/fancybox-master/jquery.fancybox.min.js"></script>
+            <script src="assets/vendor/video-background/jquery.mb.YTPlayer.js"></script>
+            <script src="assets/vendor/WOW-master/dist/wow.min.js"></script>
+            <script src="assets/custom/js/custom.js"></script>  
+            <script>
+            </script>
     </body>
 </html>

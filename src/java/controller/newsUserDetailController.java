@@ -26,7 +26,7 @@ public class newsUserDetailController extends HttpServlet {
 
      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nid = req.getParameter("nid");
-        req.getRequestDispatcher("detailNews").forward(req, resp);
+        req.getRequestDispatcher("newsUserDetail").forward(req, resp);
     }
 
     @Override
