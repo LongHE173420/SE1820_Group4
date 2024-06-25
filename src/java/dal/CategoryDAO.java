@@ -35,11 +35,11 @@ public class CategoryDAO extends DBContext {
         }
     }
     
-    public List<Category> getListCategory() {
+    public  List<Category> getListCategory() {
         List<Category> data = new ArrayList<Category>();
         try {
             connect();
-            String strSelect = "select [id], [name] from Category";
+            String strSelect = "select [CategoryID], [CategoryName] from Category";
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {  
@@ -54,7 +54,13 @@ public class CategoryDAO extends DBContext {
         }
         return data;
     }
-    
+     public static  void main(String[] args) {
+         CategoryDAO cat=new CategoryDAO();
+        List<Category> categories = cat.getListCategory() ;
+        for (Category category : categories) {
+            System.out.println(category);
+        }
+    }
     public Category getCategoryByID(int cid) {
         try {
             connect();

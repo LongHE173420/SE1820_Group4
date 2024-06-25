@@ -112,8 +112,8 @@
                                 <span></span>      
                                 <article>
                                     <img src="${n.getImage()}" alt="${n.getTitle()}"
-                                                             onerror="this.onerror=null; 
-                                                             this.src='https://lh4.ggpht.com/-PtwFBckvv78/V3aBB39xD9I/AAAAAAAAHFA/EXKKalIB8IkvyJjUzGrDVQCzLMs5Alx9QCLcB/s1600/anh-blogspot-khong-hien-thi.png';">
+                                         onerror="this.onerror=null; 
+                                         this.src='https://lh4.ggpht.com/-PtwFBckvv78/V3aBB39xD9I/AAAAAAAAHFA/EXKKalIB8IkvyJjUzGrDVQCzLMs5Alx9QCLcB/s1600/anh-blogspot-khong-hien-thi.png';">
                                     <p class="Normal" style="text-align:justify;">${n.getContent()}</p>
                                     <p class="Normal" style="text-align:right;">Author: <strong>${n.getAuthor()}</strong></p>
                                 </article>

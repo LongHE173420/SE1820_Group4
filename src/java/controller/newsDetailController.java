@@ -42,13 +42,14 @@ public class newsDetailController extends HttpServlet {
         req.getRequestDispatcher("403.jsp").forward(req, resp);
         return;
     }
+    
     String nid = (String) s.getAttribute("updateNewsId");
     NewsDAO n = new NewsDAO();
     NewsGroupDAO ng = new NewsGroupDAO();
     News news = null;
     if (nid != null) {
         news = n.getNewsById(Integer.parseInt(nid));
-        if (news != null) {
+       if (news != null) {
             String imageFormat = "<p><img src=\"" + news.getImage() + "\" width=\"572\" height=\"322\" /></p>";
             req.setAttribute("imageFormat", imageFormat);
         }

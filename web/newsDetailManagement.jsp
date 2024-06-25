@@ -169,45 +169,15 @@
         <script>
             function configTheUrl() {
                 var content = document.getElementById('myTextarea').value;
-
-// Sử dụng biểu thức chính quy để lấy đường dẫn tới ảnh được chèn vào trình soạn thảo
                 var regex = /<img[^>]+src="?([^"\s]+)"?\s*\/>/g;
                 var match = regex.exec(content);
-
-// Lấy đường dẫn tới ảnh
                 var imageUrl = match[1];
             }
         </script>
         <!-- TINYMCE -->
         <script src="https://cdn.tiny.cloud/1/vmr41mglpliaf391pouum79gshee6pl6jqc86sxrnegt8nts/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
-//            tinymce.init({
-//                selector: '#thumbnail',
-//                plugins: "image code",
-//                image_title: true,
-//                automatic_uploads: true,
-//                file_picker_types: 'image',
-//                file_picker_callback: function (cb, value, meta) {
-//                    var input = document.createElement('input');
-//                    input.setAttribute('type', 'file');
-//                    input.setAttribute('accept', 'image/*');
-//                    input.onchange = function () {
-//                        var file = this.files[0];
-//                        var reader = new FileReader();
-//
-//                        reader.onload = function () {
-//                            var id = 'blobid' + (new Date()).getTime();
-//                            var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-//                            var base64 = reader.result.split(',')[1];
-//                            var blobInfo = blobCache.create(id, file, base64);
-//                            blobCache.add(blobInfo);
-//                            cb(blobInfo.blobUri(), {title: file.name});
-//                        };
-//                        reader.readAsDataURL(file);
-//                    };
-//                    input.click();
-//                }
-//            });
+
             tinymce.init({
                 selector: '.tinymce',
                 plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
@@ -273,16 +243,7 @@
                     xhr.send(formData);
                 }
             });
-//            document.getElementById('insert-image-button').addEventListener('click', function () {
-//                tinymce.activeEditor.windowManager.open({
-//                    title: 'Chọn ảnh',
-//                    file: 'image.html',
-//                    filetype: 'image',
-//                    oninsert: function (url) {
-//                        tinymce.activeEditor.execCommand('mceInsertContent', false, '<img src="' + url + '">');
-//                    }
-//                });
-//            });
+
         </script>
 
         <script>
