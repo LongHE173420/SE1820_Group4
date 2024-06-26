@@ -40,9 +40,10 @@ public class newsUserController extends HttpServlet {
         NewsGroupDAO ng1 = new NewsGroupDAO();
         List<NewsGroup> groups = ng1.getListNewsGroup();
         int gid = -1;
-        NewsDAO n = new NewsDAO();      
+        NewsDAO n = new NewsDAO();
+        CategoryDAO c = new CategoryDAO();
+        req.setAttribute("cList", c.getListCategory());
         
-
         if (groupName == null || groupName.isEmpty()) {
             req.setAttribute("news", n.getListByPages(Integer.parseInt(page)));
             req.setAttribute("groups", groups);
@@ -58,7 +59,7 @@ public class newsUserController extends HttpServlet {
             } else {
                 req.setAttribute("news", n.getListByPagesAndGroup(Integer.parseInt(page), gid));
             }
-            
+            req.setAttribute("cList", c.getListCategory());
             req.setAttribute("groups", groups);
             req.setAttribute("count", calThePage(5, gid));
 

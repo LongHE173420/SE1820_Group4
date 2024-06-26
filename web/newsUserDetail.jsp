@@ -70,21 +70,7 @@
         <c:set var="pr" value="Product" />
         <c:set var="ac" value="News" />
         <c:set var="n" value="1" />
-        <div class="mainmenu-area">
-            <div class="container">
-                <div class="row">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div> 
-
-                </div>
-            </div>
-        </div>
+        
         <div class="product-big-title-area">
             <div class="container">
                 <div class="row">
@@ -111,9 +97,7 @@
                                 <p style="color: gray">Postdate: ${n.getCreateAt()}</p>
                                 <span></span>      
                                 <article>
-                                    <img src="${n.getImage()}" alt="${n.getTitle()}"
-                                         onerror="this.onerror=null; 
-                                         this.src='https://lh4.ggpht.com/-PtwFBckvv78/V3aBB39xD9I/AAAAAAAAHFA/EXKKalIB8IkvyJjUzGrDVQCzLMs5Alx9QCLcB/s1600/anh-blogspot-khong-hien-thi.png';">
+                                    
                                     <p class="Normal" style="text-align:justify;">${n.getContent()}</p>
                                     <p class="Normal" style="text-align:right;">Author: <strong>${n.getAuthor()}</strong></p>
                                 </article>
@@ -125,20 +109,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <script type="text/javascript">
-                function sendRequest(value) {
-                    var url = "newsUser";
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.open("POST", url, true);
-                    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhttp.send("viewNewsId=" + value);
-                }
-            </script>
-
-            <!--Start of Tawk.to Script-->
             <script type="text/javascript">
                 var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
                 (function () {
